@@ -1,11 +1,7 @@
 import React from 'react'
 import {useLoaderData} from 'remix'
-import type {LoaderFunction, LinksFunction} from 'remix'
-import stylesUrl from '~/styles/app.css'
+import type {LoaderFunction} from 'remix'
 
-export let links: LinksFunction = () => {
-  return [{rel: 'stylesheet', href: stylesUrl}]
-}
 interface User {
   avatar_url: string
   bio: string

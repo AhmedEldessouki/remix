@@ -1,12 +1,8 @@
 import React from 'react'
 import {Link, Outlet, useLoaderData} from 'remix'
-import type {LoaderFunction, LinksFunction} from 'remix'
+import type {LoaderFunction} from 'remix'
 import type {Await} from '../../types'
-import stylesUrl from '~/styles/app.css'
 
-export let links: LinksFunction = () => {
-  return [{rel: 'stylesheet', href: stylesUrl}]
-}
 export let loader: LoaderFunction = () => {
   return fetch('https://api.github.com/gists')
 }

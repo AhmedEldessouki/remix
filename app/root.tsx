@@ -2,10 +2,49 @@ import type {LinksFunction, LoaderFunction} from 'remix'
 import {Meta, Links, Scripts, useLoaderData, LiveReload, useCatch} from 'remix'
 import {Outlet} from 'react-router-dom'
 
-import stylesUrl from '~/styles/app.css'
+import tailwindStyles from './styles/tailwind.css'
+import proseStyles from './styles/prose.css'
+// import appStyles from '../styles/app.css'
 
-export let links: LinksFunction = () => {
-  return [{rel: 'stylesheet', href: stylesUrl}]
+export const links: LinksFunction = () => {
+  return [
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/Matter-Medium.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/Matter-Regular.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    // {
+    //   rel: 'apple-touch-icon',
+    //   sizes: '180x180',
+    //   href: '/favicons/apple-touch-icon.png',
+    // },
+    // {
+    //   rel: 'icon',
+    //   type: 'image/png',
+    //   sizes: '32x32',
+    //   href: '/favicons/favicon-32x32.png',
+    // },
+    // {
+    //   rel: 'icon',
+    //   type: 'image/png',
+    //   sizes: '16x16',
+    //   href: '/favicons/favicon-16x16.png',
+    // },
+    // {rel: 'manifest', href: '/site.webmanifest'},
+    // {rel: 'icon', href: '/favicon.ico'},
+    {rel: 'stylesheet', href: tailwindStyles},
+    {rel: 'stylesheet', href: proseStyles},
+    // {rel: 'stylesheet', href: appStyles},
+  ]
 }
 
 export let loader: LoaderFunction = async () => {

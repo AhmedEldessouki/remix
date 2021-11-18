@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default function GistIndex() {
   return (
@@ -8,5 +8,5 @@ export default function GistIndex() {
         Here we could show cool stats about the team or recent activity, etc.
       </p>
     </div>
-  );
+  )
 }

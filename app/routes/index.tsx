@@ -1,4 +1,4 @@
-import type {MetaFunction, LinksFunction, LoaderFunction} from 'remix'
+import type {MetaFunction, LoaderFunction} from 'remix'
 import {useLoaderData} from 'remix'
 import {Link} from 'react-router-dom'
 
