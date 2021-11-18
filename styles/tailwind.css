@@ -10,7 +10,7 @@
   font-family: 'Matter';
   src: url('/fonts/lato-v20-latin-100.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-100.woff') format('woff');
-  font-weight: 500;
+  font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
@@ -19,15 +19,15 @@
   font-family: 'Matter';
   src: url('/fonts/lato-v20-latin-100italic.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-100italic.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-weight: 100;
+  font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Matter';
   src: url('/fonts/lato-v20-latin-300.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-300.woff') format('woff');
-  font-weight: 500;
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
@@ -36,15 +36,15 @@
   font-family: 'Matter';
   src: url('/fonts/lato-v20-latin-300italic.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-300italic.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-weight: 300;
+  font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Matter';
   src: url('/fonts/lato-v20-latin-700.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-700.woff') format('woff');
-  font-weight: 500;
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -53,15 +53,15 @@
   font-family: 'Matter';
   src: url('/fonts/lato-v20-latin-700italic.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-700italic.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Matter';
   src: url('/fonts/lato-v20-latin-900.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-900.woff') format('woff');
-  font-weight: 500;
+  font-weight: 900;
   font-style: normal;
   font-display: swap;
 }
@@ -70,8 +70,8 @@
   font-family: 'Matter';
   src: url('/fonts/lato-v20-latin-900italic.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-900italic.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  font-weight: 900;
+  font-style: italic;
   font-display: swap;
 }
 @font-face {
@@ -79,7 +79,7 @@
   src: url('/fonts/lato-v20-latin-italic.woff2') format('woff2'),
     url('/fonts/lato-v20-latin-italic.woff') format('woff');
   font-weight: 500;
-  font-style: normal;
+  font-style: italic;
   font-display: swap;
 }
 
