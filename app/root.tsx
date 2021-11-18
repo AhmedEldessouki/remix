@@ -7,18 +7,75 @@ import proseStyles from './styles/prose.css'
 // import appStyles from '../styles/app.css'
 
 export const links: LinksFunction = () => {
+  // ! Limit the Fonts to where it's being used. Unless It's commonly Used
   return [
     {
       rel: 'preload',
       as: 'font',
-      href: '/fonts/Matter-Medium.woff2',
+      href: '/fonts/lato-v20-latin-100.woff2',
       type: 'font/woff2',
       crossOrigin: 'anonymous',
     },
     {
       rel: 'preload',
       as: 'font',
-      href: '/fonts/Matter-Regular.woff2',
+      href: '/fonts/lato-v20-latin-100italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-300.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-300italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-700.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-700italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-900.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-900italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-regular.woff2',
       type: 'font/woff2',
       crossOrigin: 'anonymous',
     },
