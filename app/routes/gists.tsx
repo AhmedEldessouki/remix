@@ -25,15 +25,14 @@ export default function Gists() {
       <button onClick={() => setCount(n => n + 1)}>{count}</button>
       <h2>Public Gists</h2>
       <Link to="/">Home</Link>
-      <ul className="text-gray-200 dark:bg-gray-800 list-none">
-        SOme List
+      <ol className="line-clamp-2 p-10 dark:text-gray-400 dark:bg-gray-800 list-decimal">
         {Array.isArray(data) &&
           data.map(gist => (
             <li key={gist.id}>
               <Link to={gist.owner.login}>{Object.keys(gist.files)[0]}</Link>
             </li>
           ))}
-      </ul>
+      </ol>
       <Link to="new">new</Link>
       <Outlet />
     </div>
