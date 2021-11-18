@@ -1,8 +1,11 @@
 node_modules
 
+# Env Files
+.env
+.env.*
+
 /.cache
 /build
 /public/build
 app/styles
 
-.env

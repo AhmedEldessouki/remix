@@ -5,13 +5,15 @@
   "license": "",
   "scripts": {
     "watch:css": "postcss styles --base styles --dir app/styles -w",
-     "build:css": "postcss styles/**/*.css --base styles --dir app/styles",
+    "build:css": "postcss styles/**/*.css --base styles --dir app/styles",
     "build": "npm run build:css && remix build",
     "dev": "remix dev",
-    "postinstall": "remix setup node",
-    "start": "remix-serve build"
+    "postinstall": "remix setup node && metronome setup",
+     "start": "remix-serve build"
   },
   "dependencies": {
+    "@metronome-sh/node": "^1.0.5",
+    "@metronome-sh/react": "^1.0.5",
     "@remix-run/react": "^0.21.0",
     "@remix-run/serve": "^0.21.0",
     "@tailwindcss/aspect-ratio": "^0.3.0",
