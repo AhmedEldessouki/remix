@@ -1,30 +1,118 @@
-import type { LinksFunction, LoaderFunction } from "remix";
-import {
-  Meta,
-  Links,
-  Scripts,
-  useLoaderData,
-  LiveReload,
-  useCatch
-} from "remix";
-import { Outlet } from "react-router-dom";
+import type {LinksFunction, LoaderFunction} from 'remix'
+import {Meta, Links, Scripts, useLoaderData, LiveReload, useCatch} from 'remix'
+import {Outlet} from 'react-router-dom'
+import {IdProvider} from '@radix-ui/react-id'
+import tailwindStyles from './styles/tailwind.css'
+import proseStyles from './styles/prose.css'
 
-import stylesUrl from "./styles/global.css";
-
-export let links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: stylesUrl }];
-};
+export const links: LinksFunction = () => {
+  // ! Limit the Fonts to where it's being used. Unless It's commonly Used
+  return [
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-100.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-100italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-300.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-300italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-700.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-700italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-900.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-900italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-italic.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    {
+      rel: 'preload',
+      as: 'font',
+      href: '/fonts/lato-v20-latin-regular.woff2',
+      type: 'font/woff2',
+      crossOrigin: 'anonymous',
+    },
+    // {
+    //   rel: 'apple-touch-icon',
+    //   sizes: '180x180',
+    //   href: '/favicons/apple-touch-icon.png',
+    // },
+    // {
+    //   rel: 'icon',
+    //   type: 'image/png',
+    //   sizes: '32x32',
+    //   href: '/favicons/favicon-32x32.png',
+    // },
+    // {
+    //   rel: 'icon',
+    //   type: 'image/png',
+    //   sizes: '16x16',
+    //   href: '/favicons/favicon-16x16.png',
+    // },
+    // {rel: 'manifest', href: '/site.webmanifest'},
+    // {rel: 'icon', href: '/favicon.ico'},
+    {rel: 'stylesheet', href: tailwindStyles},
+    {rel: 'stylesheet', href: proseStyles},
+    // {rel: 'stylesheet', href: appStyles},
+  ]
+}
 
 export let loader: LoaderFunction = async () => {
-  return { date: new Date() };
-};
+  return {date: new Date()}
+}
 
 function Document({
   children,
-  title
+  title,
 }: {
-  children: React.ReactNode;
-  title?: string;
+  children: React.ReactNode
+  title?: string
 }) {
   return (
     <html lang="en">
@@ -38,27 +126,34 @@ function Document({
       <body>
         {children}
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
-  );
+  )
 }
 
 export default function App() {
-  let data = useLoaderData();
+  let data = useLoaderData()
 
   return (
-    <Document>
-      <Outlet />
-      <footer>
-        <p>This page was rendered at {data.date.toLocaleString()}</p>
-      </footer>
-    </Document>
-  );
+    <IdProvider>
+      <Document>
+        <Outlet />
+        <footer>
+          <p>This page was rendered at {data.date.toLocaleString()}</p>
+        </footer>
+      </Document>
+    </IdProvider>
+  )
 }
-
+// ! This Is Popping Up Error
+//  function AppWithProviders() {
+//   return (
+//       <App />
+//   )
+// }
 export function CatchBoundary() {
-  let caught = useCatch();
+  let caught = useCatch()
 
   switch (caught.status) {
     case 401:
@@ -69,17 +164,17 @@ export function CatchBoundary() {
             {caught.status} {caught.statusText}
           </h1>
         </Document>
-      );
+      )
 
     default:
       throw new Error(
-        `Unexpected caught response with status: ${caught.status}`
-      );
+        `Unexpected caught response with status: ${caught.status}`,
+      )
   }
 }
 
-export function ErrorBoundary({ error }: { error: Error }) {
-  console.error(error);
+export function ErrorBoundary({error}: {error: Error}) {
+  console.error(error)
 
   return (
     <Document title="Uh-oh!">
@@ -90,5 +185,5 @@ export function ErrorBoundary({ error }: { error: Error }) {
         uncaught errors.
       </p>
     </Document>
-  );
+  )
 }

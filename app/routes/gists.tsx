@@ -1,37 +1,40 @@
-import React from "react";
-import { Link, LoaderFunction, Outlet } from "remix";
-import { useLoaderData } from "remix";
+import React from 'react'
+import {Link, Outlet, useLoaderData} from 'remix'
+import type {LoaderFunction} from 'remix'
+import type {Await} from '../../types'
 
 export let loader: LoaderFunction = () => {
-  return fetch("https://api.github.com/gists");
-};
+  return fetch('https://api.github.com/gists')
+}
 
-export function meta({ data }: { data: any[] }) {
+type Gists = Await<ReturnType<typeof loader>>
+
+export function meta({data}: {data: Gists}) {
   return {
-    title: "Public Gists",
+    title: 'Public Gists',
     description: `View the latest ${data.length} gists from the public`,
-  };
+  }
 }
 
 export default function Gists() {
-  let data = useLoaderData();
-  const [count, setCount] = React.useState(0);
+  let data = useLoaderData()
+  const [count, setCount] = React.useState(0)
 
   return (
-    <div>
-      <button onClick={() => setCount((n) => n + 1)}>{count}</button>
+    <div className="">
+      <button onClick={() => setCount(n => n + 1)}>{count}</button>
       <h2>Public Gists</h2>
       <Link to="/">Home</Link>
-      <ul>
+      <ol className="p-10 text-blue-900 dark:text-gray-400 dark:bg-gray-800 list-decimal">
         {Array.isArray(data) &&
-          data.map((gist: any) => (
+          data.map(gist => (
             <li key={gist.id}>
               <Link to={gist.owner.login}>{Object.keys(gist.files)[0]}</Link>
             </li>
           ))}
-      </ul>
+      </ol>
       <Link to="new">new</Link>
       <Outlet />
     </div>
-  );
+  )
 }

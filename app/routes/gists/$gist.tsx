@@ -1,21 +1,21 @@
-import React from "react";
-import { useLoaderData } from "remix";
-import type { LoaderFunction } from "remix";
+import React from 'react'
+import {useLoaderData} from 'remix'
+import type {LoaderFunction} from 'remix'
 
 interface User {
-  avatar_url: string;
-  bio: string;
-  company: string;
-  location: string;
-  name: string;
+  avatar_url: string
+  bio: string
+  company: string
+  location: string
+  name: string
 }
 
-export let loader: LoaderFunction = ({ params }) => {
-  return fetch(`https://api.github.com/users/${params.gist}`);
-};
+export let loader: LoaderFunction = ({params}) => {
+  return fetch(`https://api.github.com/users/${params.gist}`)
+}
 
 export default function TeamMember() {
-  let user = useLoaderData<User>();
+  let user = useLoaderData<User>()
   return (
     <div>
       <h3>{user.name}</h3>
@@ -28,5 +28,5 @@ export default function TeamMember() {
         <dd>{user.location}</dd>
       </dl>
     </div>
-  );
+  )
 }

@@ -1,0 +1,3 @@
+type Await<Type> = Type extends Promise<infer Value> ? Await<Value> : Type;
+
+export { Await };
