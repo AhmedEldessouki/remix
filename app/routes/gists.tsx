@@ -21,11 +21,11 @@ export default function Gists() {
   const [count, setCount] = React.useState(0)
 
   return (
-    <div>
+    <div className="">
       <button onClick={() => setCount(n => n + 1)}>{count}</button>
       <h2>Public Gists</h2>
       <Link to="/">Home</Link>
-      <ol className="line-clamp-2 p-10 dark:text-gray-400 dark:bg-gray-800 list-decimal">
+      <ol className="p-10 text-blue-900 dark:text-gray-400 dark:bg-gray-800 list-decimal">
         {Array.isArray(data) &&
           data.map(gist => (
             <li key={gist.id}>

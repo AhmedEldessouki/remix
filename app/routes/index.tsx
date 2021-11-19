@@ -17,20 +17,23 @@ export default function Index() {
   let data = useLoaderData()
 
   return (
-    <div style={{textAlign: 'center', padding: 20}}>
+    <div
+      className="prose max-w-full text-black dark:text-gray-100 dark:bg-gray-900"
+      style={{textAlign: 'center', padding: 20}}
+    >
       <h2>Welcome to Remix!</h2>
-      <Link className="prose" to="/gists">
-        {' '}
-        Gists{' '}
+      <Link className="" to="/gists">
+        Gists
       </Link>
 
-      <p className="line-clamp-2">
+      <blockquote className="dark:text-gray-200">
         Et molestiae hic earum repellat aliquid est doloribus delectus. Enim
         illum odio porro ut omnis dolor debitis natus. Voluptas possimus
         deserunt sit delectus est saepe nihil. Qui voluptate possimus et quia.
         Eligendi voluptas voluptas dolor cum. Rerum est quos quos id ut
         molestiae fugit.
-      </p>
+      </blockquote>
+      <hr />
       <p>
         <a className="prose" href="https://docs.remix.run">
           Check out the docs
@@ -44,9 +47,24 @@ export default function Index() {
         </Link>{' '}
         Clicking this link will land you in your root CatchBoundary component.
       </p>
-      <h1 className="prose prose-2xl italic font-black">
+      <h1 className="italic font-black">
         The quick brown fox jumps over the lazy dog.
       </h1>
+      <h2 className="italic font-black">
+        The quick brown fox jumps over the lazy dog.
+      </h2>
+      <h3 className="-2xl italic font-black backdrop-sepia">
+        The quick brown fox jumps over the lazy dog.
+      </h3>
+      <h4 className="italic font-black">
+        The quick brown fox jumps over the lazy dog.
+      </h4>
+      <h5 className="italic font-black">
+        The quick brown fox jumps over the lazy dog.
+      </h5>
+      <h6 className="italic font-black">
+        The quick brown fox jumps over the lazy dog.
+      </h6>
     </div>
   )
 }
