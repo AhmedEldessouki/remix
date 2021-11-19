@@ -1,6 +1,7 @@
 import type {MetaFunction, LoaderFunction} from 'remix'
 import {useLoaderData} from 'remix'
 import {Link} from 'react-router-dom'
+import {motion} from 'framer-motion'
 
 export let meta: MetaFunction = () => {
   return {
@@ -26,13 +27,19 @@ export default function Index() {
         Gists
       </Link>
 
-      <blockquote className="dark:text-gray-200">
+      <motion.blockquote
+        drag="x"
+        dragConstraints={{left: -10, right: 10}}
+        whileHover={{scale: 1.1}}
+        whileTap={{scale: 0.9}}
+        className="dark:text-gray-200"
+      >
         Et molestiae hic earum repellat aliquid est doloribus delectus. Enim
         illum odio porro ut omnis dolor debitis natus. Voluptas possimus
         deserunt sit delectus est saepe nihil. Qui voluptate possimus et quia.
         Eligendi voluptas voluptas dolor cum. Rerum est quos quos id ut
         molestiae fugit.
-      </blockquote>
+      </motion.blockquote>
       <hr />
       <p>
         <a className="prose" href="https://docs.remix.run">
