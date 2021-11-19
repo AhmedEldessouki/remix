@@ -132,25 +132,26 @@ function Document({
   )
 }
 
-function App() {
+export default function App() {
   let data = useLoaderData()
 
   return (
-    <Document>
-      <Outlet />
-      <footer>
-        <p>This page was rendered at {data.date.toLocaleString()}</p>
-      </footer>
-    </Document>
-  )
-}
-export default function AppWithProviders() {
-  return (
     <IdProvider>
-      <App />
+      <Document>
+        <Outlet />
+        <footer>
+          <p>This page was rendered at {data.date.toLocaleString()}</p>
+        </footer>
+      </Document>
     </IdProvider>
   )
 }
+// ! This Is Popping Up Error
+//  function AppWithProviders() {
+//   return (
+//       <App />
+//   )
+// }
 export function CatchBoundary() {
   let caught = useCatch()
 
