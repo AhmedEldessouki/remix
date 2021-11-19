@@ -1,10 +1,9 @@
 import type {LinksFunction, LoaderFunction} from 'remix'
 import {Meta, Links, Scripts, useLoaderData, LiveReload, useCatch} from 'remix'
 import {Outlet} from 'react-router-dom'
-
+import {IdProvider} from '@radix-ui/react-id'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
-// import appStyles from '../styles/app.css'
 
 export const links: LinksFunction = () => {
   // ! Limit the Fonts to where it's being used. Unless It's commonly Used
@@ -133,7 +132,7 @@ function Document({
   )
 }
 
-export default function App() {
+function App() {
   let data = useLoaderData()
 
   return (
@@ -145,7 +144,13 @@ export default function App() {
     </Document>
   )
 }
-
+export default function AppWithProviders() {
+  return (
+    <IdProvider>
+      <App />
+    </IdProvider>
+  )
+}
 export function CatchBoundary() {
   let caught = useCatch()
 

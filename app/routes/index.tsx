@@ -2,6 +2,8 @@ import type {MetaFunction, LoaderFunction} from 'remix'
 import {useLoaderData} from 'remix'
 import {Link} from 'react-router-dom'
 import {motion} from 'framer-motion'
+import {Popover, PopoverContent, PopoverTrigger} from '~/components/popover'
+import DropDown from '~/components/dropdown'
 
 export let meta: MetaFunction = () => {
   return {
@@ -22,6 +24,12 @@ export default function Index() {
       className="prose max-w-full text-black dark:text-gray-100 dark:bg-gray-900"
       style={{textAlign: 'center', padding: 20}}
     >
+      <DropDown />
+      <Popover>
+        <PopoverTrigger>?</PopoverTrigger>
+        <PopoverContent>You Just Popped It!</PopoverContent>
+      </Popover>
+
       <h2>Welcome to Remix!</h2>
       <Link className="" to="/gists">
         Gists
