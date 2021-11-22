@@ -1,7 +1,23 @@
-import type {LinksFunction, LoaderFunction} from 'remix'
-import {Meta, Links, Scripts, useLoaderData, LiveReload, useCatch} from 'remix'
+import {
+  Meta,
+  Links,
+  Scripts,
+  useLoaderData,
+  LiveReload,
+  useCatch,
+  json,
+} from 'remix'
+import type {LinksFunction, LoaderFunction, HeadersFunction} from 'remix'
 import {Outlet} from 'react-router-dom'
 import {IdProvider} from '@radix-ui/react-id'
+import {
+  handleDarkAndLightModeEls,
+  NonFlashOfWrongThemeEls,
+  Theme,
+  ThemeProvider,
+  useTheme,
+} from './utils/theme-provider'
+import {getThemeSession} from './utils/theme.server'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
 
@@ -103,24 +119,56 @@ export const links: LinksFunction = () => {
   ]
 }
 
-export let loader: LoaderFunction = async () => {
-  return {date: new Date()}
+export const loader: LoaderFunction = async ({request}) => {
+  // because this is called for every route, we'll do an early return for anything
+  // that has a other route setup. The response will be handled there.
+  // if (pathedRoutes[new URL(request.url).pathname]) {
+  //   return new Response()
+  // }
+
+  const themeSession = await getThemeSession(request)
+
+  const data = {
+    requestInfo: {
+      origin: new URL(request.url).hostname,
+      path: new URL(request.url).pathname,
+      session: {
+        theme: themeSession.getTheme(),
+        themeObj: themeSession,
+      },
+    },
+  }
+
+  return json(data)
+}
+
+export const headers: HeadersFunction = ({loaderHeaders}) => {
+  return {
+    'Server-Timing': loaderHeaders.get('Server-Timing') ?? '',
+  }
 }
 
 function Document({
   children,
   title,
+  theme,
 }: {
   children: React.ReactNode
   title?: string
+  theme?: Theme | null
 }) {
+  let data = useLoaderData()
+  console.log(data)
   return (
-    <html lang="en">
+    <html lang="en" className={theme ? theme : ''}>
       <head>
         <meta charSet="utf-8" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         {title ? <title>{title}</title> : null}
         <Meta />
+        <NonFlashOfWrongThemeEls
+          ssrTheme={Boolean(data.requestInfo?.session.theme)}
+        />
         <Links />
       </head>
       <body>
@@ -132,26 +180,42 @@ function Document({
   )
 }
 
+function AppWithoutProvider() {
+  let data = useLoaderData()
+  const [theme, setTheme] = useTheme()
+  return (
+    <Document theme={theme}>
+      <nav>
+        <button
+          onClick={() => {
+            setTheme(previousTheme =>
+              previousTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK,
+            )
+          }}
+        >
+          Theme
+        </button>
+      </nav>
+      <Outlet />
+      <footer>
+        <p>This page was rendered at {data.requestInfo?.session.theme}</p>
+      </footer>
+    </Document>
+  )
+}
+
 export default function App() {
   let data = useLoaderData()
 
   return (
-    <IdProvider>
-      <Document>
-        <Outlet />
-        <footer>
-          <p>This page was rendered at {data.date.toLocaleString()}</p>
-        </footer>
-      </Document>
-    </IdProvider>
+    <ThemeProvider specifiedTheme={data.requestInfo?.session.theme}>
+      <IdProvider>
+        <AppWithoutProvider />
+      </IdProvider>
+    </ThemeProvider>
   )
 }
-// ! This Is Popping Up Error
-//  function AppWithProviders() {
-//   return (
-//       <App />
-//   )
-// }
+
 export function CatchBoundary() {
   let caught = useCatch()
 

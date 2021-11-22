@@ -52,14 +52,14 @@ export default function Index() {
       <p>
         <a className="prose" href="https://docs.remix.run">
           Check out the docs
-        </a>{' '}
+        </a>
         to get started.
       </p>
       <p>Message from the loader: {data.message}</p>
       <p>
         <Link className="prose" to="not-found">
           Link to 404 not found page.
-        </Link>{' '}
+        </Link>
         Clicking this link will land you in your root CatchBoundary component.
       </p>
       <h1 className="italic font-black">
