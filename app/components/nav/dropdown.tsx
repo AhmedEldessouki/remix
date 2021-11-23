@@ -1,16 +1,16 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import {motion} from 'framer-motion'
 import React from 'react'
+import clsx from 'clsx'
 
 const turnLeft = {
   open: {
     marginBottom: '7px',
     marginTop: '10px',
     rotate: 45,
-    backgroundColor: 'rgba(255,90,90,0.45)',
   },
   close: {
-    backgroundColor: 'none',
+    backgroundColor: 'var(--mm-100)',
     rotate: 0,
   },
 }
@@ -18,10 +18,9 @@ const turnRight = {
   open: {
     marginTop: '-11px',
     rotate: -45,
-    backgroundColor: 'rgba(255,90,90,0.45)',
   },
   close: {
-    backgroundColor: 'none',
+    backgroundColor: 'var(--mm-100)',
     rotate: 0,
   },
 }
@@ -40,12 +39,18 @@ export default function DropDown() {
     <DropdownMenu.Root onOpenChange={() => setIsOpen(state => !state)}>
       <DropdownMenu.Trigger className="mx-4 p-3 py-1 border-4 border-blueGray-600 border-opacity-30 rounded-lg shadow-inner">
         <motion.div
-          className="mb-1 w-5 h-1 bg-mm-100 rounded-sm"
+          className={clsx('mb-1 w-5 h-1 rounded-sm', {
+            'bg-red-400': isOpen,
+            'bg-mm-100': !isOpen,
+          })}
           animate={isOpen ? 'open' : 'closed'}
           variants={turnLeft}
         ></motion.div>
         <motion.div
-          className="mb-1 w-5 h-1 bg-mm-100 rounded-sm"
+          className={clsx('mb-1 w-5 h-1 rounded-sm', {
+            'bg-red-400': isOpen,
+            'bg-mm-100': !isOpen,
+          })}
           animate={isOpen ? 'open' : 'closed'}
           variants={turnRight}
         ></motion.div>
@@ -55,7 +60,7 @@ export default function DropDown() {
           variants={fade}
         ></motion.div>
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className="text-gray-100 bg-gray-900 flex flex-col gap-2 items-center justify-center p-4">
+      <DropdownMenu.Content className="flex flex-col gap-2 items-center justify-center p-4 text-gray-100 bg-gray-900">
         <DropdownMenu.Item className="">Some Value</DropdownMenu.Item>
         <DropdownMenu.Item className="">Some Value</DropdownMenu.Item>
         <DropdownMenu.Item className="">Some Value</DropdownMenu.Item>
