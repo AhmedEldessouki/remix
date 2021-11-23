@@ -3,7 +3,8 @@ import {useLoaderData} from 'remix'
 import {Link} from 'react-router-dom'
 import {motion} from 'framer-motion'
 import {Popover, PopoverContent, PopoverTrigger} from '~/components/popover'
-import DropDown from '~/components/dropdown'
+import DropDown from '~/components/nav/dropdown'
+import {AccessibleIcon} from '@radix-ui/react-accessible-icon'
 
 export let meta: MetaFunction = () => {
   return {
@@ -26,8 +27,49 @@ export default function Index() {
     >
       <DropDown />
       <Popover>
-        <PopoverTrigger>?</PopoverTrigger>
-        <PopoverContent>You Just Popped It!</PopoverContent>
+        <PopoverTrigger className="">fonts</PopoverTrigger>
+        <PopoverContent className="flex flex-col gap-2 m-2 p-5 bg-sky-900">
+          <div>
+            <pre className="">font-thin!</pre>
+            <span className="font-thin">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">italic font-thin!</pre>
+            <span className="italic font-thin">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">font-light!</pre>
+            <span className="font-light">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">italic font-light!</pre>
+            <span className="italic font-light">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">font-bold!</pre>
+            <span className="font-bold">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">italic font-bold!</pre>
+            <span className="italic font-bold">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">font-black!</pre>
+            <span className="font-black">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">italic font-black!</pre>
+            <span className="italic font-black">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">italic font-normal!</pre>
+            <span className="italic font-normal">You Just Popped It!</span>
+          </div>
+          <div>
+            <pre className="">font-normal!</pre>
+            <span className="font-normal">You Just Popped It!</span>
+          </div>
+        </PopoverContent>
       </Popover>
       <h2>Welcome to Remix!</h2>
       <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">

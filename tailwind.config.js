@@ -9,7 +9,7 @@ module.exports = {
   darkMode: 'class',
   variants: {
     opacity: ['responsive', 'hover', 'focus', 'dark', 'group-hover'],
-    boxShadow: ['responsive', 'hover', 'focus', 'dark'],
+    boxShadow: ['responsive', 'active', 'hover', 'focus', 'dark'],
     animation: ['responsive', 'motion-safe', 'motion-reduce'],
     transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
   },
@@ -21,6 +21,7 @@ module.exports = {
     },
     colors: {
       // color scheme is defined in /app.css
+      ...colors,
       trans: 'transparent',
       current: 'currentColor',
       white: colors.white,

@@ -20,6 +20,9 @@ import {getThemeSession} from './utils/theme.server'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
 import appStyles from './styles/app.css'
+import {AccessibleIcon} from '@radix-ui/react-accessible-icon'
+import {DataSession} from '../types'
+import Nav from './components/nav/nav'
 
 export const links: LinksFunction = () => {
   // ! Limit the Fonts to where it's being used. Unless It's commonly Used
@@ -27,31 +30,11 @@ export const links: LinksFunction = () => {
     {
       rel: 'preload',
       as: 'font',
-      href: '/fonts/lato-v20-latin-100.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
-    {
-      rel: 'preload',
-      as: 'font',
-      href: '/fonts/lato-v20-latin-100italic.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
-    {
-      rel: 'preload',
-      as: 'font',
       href: '/fonts/lato-v20-latin-300.woff2',
       type: 'font/woff2',
       crossOrigin: 'anonymous',
     },
-    {
-      rel: 'preload',
-      as: 'font',
-      href: '/fonts/lato-v20-latin-300italic.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
+
     {
       rel: 'preload',
       as: 'font',
@@ -83,13 +66,6 @@ export const links: LinksFunction = () => {
     {
       rel: 'preload',
       as: 'font',
-      href: '/fonts/lato-v20-latin-italic.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
-    {
-      rel: 'preload',
-      as: 'font',
       href: '/fonts/lato-v20-latin-regular.woff2',
       type: 'font/woff2',
       crossOrigin: 'anonymous',
@@ -112,7 +88,7 @@ export const links: LinksFunction = () => {
     //   href: '/favicons/favicon-16x16.png',
     // },
     // {rel: 'manifest', href: '/site.webmanifest'},
-    // {rel: 'icon', href: '/favicon.ico'},
+    {rel: 'icon', href: '/remix.png', type: 'image/png'},
     {rel: 'stylesheet', href: tailwindStyles},
     {rel: 'stylesheet', href: proseStyles},
     {rel: 'stylesheet', href: appStyles},
@@ -128,14 +104,9 @@ export const loader: LoaderFunction = async ({request}) => {
 
   const themeSession = await getThemeSession(request)
 
-  const data = {
-    requestInfo: {
-      origin: new URL(request.url).hostname,
-      path: new URL(request.url).pathname,
-      session: {
-        theme: themeSession.getTheme(),
-        themeObj: themeSession,
-      },
+  const data: DataSession = {
+    session: {
+      theme: themeSession.getTheme(),
     },
   }
 
@@ -157,18 +128,15 @@ function Document({
   title?: string
   theme?: Theme | null
 }) {
-  let data = useLoaderData()
-  console.log(data)
+  let data = useLoaderData<DataSession>()
+
   return (
     <html lang="en" className={theme ? theme : ''}>
       <head>
         <meta charSet="utf-8" />
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        {title ? <title>{title}</title> : null}
+        <title>{title ? title : 'Ahmed ElDessouki'}</title>
         <Meta />
-        <NonFlashOfWrongThemeEls
-          ssrTheme={Boolean(data.requestInfo?.session.theme)}
-        />
+        <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.session?.theme)} />
         <Links />
       </head>
       <body className="text-my-100 bg-my-600">
@@ -181,35 +149,29 @@ function Document({
 }
 
 function AppWithoutProvider() {
-  let data = useLoaderData()
-  const [theme, setTheme] = useTheme()
+  let data = useLoaderData<DataSession>()
   return (
-    <Document theme={theme}>
-      <nav>
-        <button
-          className="prose prose-lg m-4 p-3 py-1 border-4 border-blueGray-600 border-opacity-30 rounded-lg shadow-inner"
-          onClick={() => {
-            setTheme(previousTheme =>
-              previousTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK,
-            )
-          }}
-        >
-          Theme
-        </button>
-      </nav>
+    <Document theme={data.session.theme}>
+      <Nav />
       <Outlet />
       <footer>
-        <p>This page was rendered at {data.requestInfo?.session.theme}</p>
+        <hr />
+        <div className="prose-lg flex gap-1 items-center justify-center italic">
+          <span>This Website Was Build Using</span>
+          <AccessibleIcon label="remix">
+            <img src="/remix.png" alt="remix" />
+          </AccessibleIcon>
+        </div>
       </footer>
     </Document>
   )
 }
 
 export default function App() {
-  let data = useLoaderData()
+  let data = useLoaderData<DataSession>()
 
   return (
-    <ThemeProvider specifiedTheme={data.requestInfo?.session.theme}>
+    <ThemeProvider specifiedTheme={data.session?.theme}>
       <IdProvider>
         <AppWithoutProvider />
       </IdProvider>
