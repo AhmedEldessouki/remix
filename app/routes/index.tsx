@@ -21,7 +21,7 @@ export default function Index() {
 
   return (
     <div
-      className="prose max-w-full text-black dark:text-gray-100 dark:bg-gray-900"
+      className="prose max-w-full text-black dark:text-my-100"
       style={{textAlign: 'center', padding: 20}}
     >
       <DropDown />
@@ -29,18 +29,94 @@ export default function Index() {
         <PopoverTrigger>?</PopoverTrigger>
         <PopoverContent>You Just Popped It!</PopoverContent>
       </Popover>
-
       <h2>Welcome to Remix!</h2>
+      <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
+        <span className={`bg-mm-100` + ` w-20 h-10 text-center`}>100</span>
+        <span className={`bg-mm-200` + ` w-20 h-10 text-center`}>200</span>
+        <span className={`bg-mm-300` + ` w-20 h-10 text-center`}>300</span>
+        <span className={`bg-mm-400` + ` w-20 h-10 text-center`}>400</span>
+        <span className={`bg-mm-500` + ` w-20 h-10 text-center`}>500</span>
+        <span className={`bg-mm-600` + ` w-20 h-10 text-center`}>600</span>
+        <span className={`bg-mm-700` + ` w-20 h-10 text-center`}>700</span>
+        <span className={`bg-mm-800` + ` w-20 h-10 text-center`}>800</span>
+        <span className={`bg-mm-900` + ` w-20 h-10 text-center`}>900</span>
+      </div>
+
+      <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
+        <span className={`bg-sky-50` + ` w-20 h-10 text-center`}>50</span>
+        <span className={`bg-sky-100` + ` w-20 h-10 text-center`}>100</span>
+        <span className={`bg-sky-200` + ` w-20 h-10 text-center`}>200</span>
+        <span className={`bg-sky-300` + ` w-20 h-10 text-center`}>300</span>
+        <span className={`bg-sky-400` + ` w-20 h-10 text-center`}>400</span>
+        <span className={`bg-sky-500` + ` w-20 h-10 text-center`}>500</span>
+        <span className={`bg-sky-600` + ` w-20 h-10 text-center`}>600</span>
+        <span className={`bg-sky-700` + ` w-20 h-10 text-center`}>700</span>
+        <span className={`bg-sky-800` + ` w-20 h-10 text-center`}>800</span>
+        <span className={`bg-sky-900` + ` w-20 h-10 text-center`}>900</span>
+      </div>
+      <div className="dark:text-my-900 flex gap-2 items-center justify-center h-14 text-center">
+        <span className={`bg-green-50` + ` w-20 h-10 text-center`}>50</span>
+        <span className={`bg-green-100` + ` w-20 h-10 text-center`}>100</span>
+        <span className={`bg-green-200` + ` w-20 h-10 text-center`}>200</span>
+        <span className={`bg-green-300` + ` w-20 h-10 text-center`}>300</span>
+        <span className={`bg-green-400` + ` w-20 h-10 text-center`}>400</span>
+        <span className={`bg-green-500` + ` w-20 h-10 text-center`}>500</span>
+        <span className={`bg-green-600` + ` w-20 h-10 text-center`}>600</span>
+        <span className={`bg-green-700` + ` w-20 h-10 text-center`}>700</span>
+        <span className={`bg-green-800` + ` w-20 h-10 text-center`}>800</span>
+        <span className={`bg-green-900` + ` w-20 h-10 text-center`}>900</span>
+      </div>
+      <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
+        <span className={`bg-red-50` + ` w-20 h-10 text-center`}>50</span>
+        <span className={`bg-red-100` + ` w-20 h-10 text-center`}>100</span>
+        <span className={`bg-red-200` + ` w-20 h-10 text-center`}>200</span>
+        <span className={`bg-red-300` + ` w-20 h-10 text-center`}>300</span>
+        <span className={`bg-red-400` + ` w-20 h-10 text-center`}>400</span>
+        <span className={`bg-red-500` + ` w-20 h-10 text-center`}>500</span>
+        <span className={`bg-red-600` + ` w-20 h-10 text-center`}>600</span>
+        <span className={`bg-red-700` + ` w-20 h-10 text-center`}>700</span>
+        <span className={`bg-red-800` + ` w-20 h-10 text-center`}>800</span>
+        <span className={`bg-red-900` + ` w-20 h-10 text-center`}>900</span>
+      </div>
+      <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
+        <span className={`bg-blueGray-50` + ` w-20 h-10 text-center`}>50</span>
+        <span className={`bg-blueGray-100` + ` w-20 h-10 text-center`}>
+          100
+        </span>
+        <span className={`bg-blueGray-200` + ` w-20 h-10 text-center`}>
+          200
+        </span>
+        <span className={`bg-blueGray-300` + ` w-20 h-10 text-center`}>
+          300
+        </span>
+        <span className={`bg-blueGray-400` + ` w-20 h-10 text-center`}>
+          400
+        </span>
+        <span className={`bg-blueGray-500` + ` w-20 h-10 text-center`}>
+          500
+        </span>
+        <span className={`bg-blueGray-600` + ` w-20 h-10 text-center`}>
+          600
+        </span>
+        <span className={`bg-blueGray-700` + ` w-20 h-10 text-center`}>
+          700
+        </span>
+        <span className={`bg-blueGray-800` + ` w-20 h-10 text-center`}>
+          800
+        </span>
+        <span className={`bg-blueGray-900` + ` w-20 h-10 text-center`}>
+          900
+        </span>
+      </div>
       <Link className="" to="/gists">
         Gists
       </Link>
-
       <motion.blockquote
         drag="x"
         dragConstraints={{left: -10, right: 10}}
         whileHover={{scale: 1.1}}
         whileTap={{scale: 0.9}}
-        className="dark:text-gray-200"
+        className=""
       >
         Et molestiae hic earum repellat aliquid est doloribus delectus. Enim
         illum odio porro ut omnis dolor debitis natus. Voluptas possimus
@@ -50,22 +126,22 @@ export default function Index() {
       </motion.blockquote>
       <hr />
       <p>
-        <a className="prose" href="https://docs.remix.run">
+        <a className="prose-light text-my-300" href="https://docs.remix.run">
           Check out the docs
         </a>
         to get started.
       </p>
-      <p>Message from the loader: {data.message}</p>
+      <strong>Message from the loader: {data.message}</strong>
       <p>
         <Link className="prose" to="not-found">
           Link to 404 not found page.
         </Link>
         Clicking this link will land you in your root CatchBoundary component.
       </p>
-      <h1 className="italic font-black">
+      <h1 className="prose dark:text-my-100 italic font-black dark:bg-my-600">
         The quick brown fox jumps over the lazy dog.
       </h1>
-      <h2 className="italic font-black">
+      <h2 className="prose text-blue dark:text-my-100 italic font-black">
         The quick brown fox jumps over the lazy dog.
       </h2>
       <h3 className="-2xl italic font-black backdrop-sepia">

@@ -3,7 +3,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 const DropDown = () => {
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger className="px-2 py-3 border-2">
+      <DropdownMenu.Trigger className="border-blueGray-600 m-4 p-3 py-1 border-4 border-opacity-30 rounded-lg shadow-inner">
         Settings
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="p-2 text-gray-100 bg-gray-900">

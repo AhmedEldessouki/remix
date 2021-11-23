@@ -11,7 +11,6 @@ import type {LinksFunction, LoaderFunction, HeadersFunction} from 'remix'
 import {Outlet} from 'react-router-dom'
 import {IdProvider} from '@radix-ui/react-id'
 import {
-  handleDarkAndLightModeEls,
   NonFlashOfWrongThemeEls,
   Theme,
   ThemeProvider,
@@ -20,6 +19,7 @@ import {
 import {getThemeSession} from './utils/theme.server'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
+import appStyles from './styles/app.css'
 
 export const links: LinksFunction = () => {
   // ! Limit the Fonts to where it's being used. Unless It's commonly Used
@@ -115,7 +115,7 @@ export const links: LinksFunction = () => {
     // {rel: 'icon', href: '/favicon.ico'},
     {rel: 'stylesheet', href: tailwindStyles},
     {rel: 'stylesheet', href: proseStyles},
-    // {rel: 'stylesheet', href: appStyles},
+    {rel: 'stylesheet', href: appStyles},
   ]
 }
 
@@ -171,7 +171,7 @@ function Document({
         />
         <Links />
       </head>
-      <body>
+      <body className="text-my-100 bg-my-600">
         {children}
         <Scripts />
         {process.env.NODE_ENV === 'development' && <LiveReload />}
@@ -187,6 +187,7 @@ function AppWithoutProvider() {
     <Document theme={theme}>
       <nav>
         <button
+          className="prose prose-lg m-4 p-3 py-1 border-4 border-blueGray-600 border-opacity-30 rounded-lg shadow-inner"
           onClick={() => {
             setTheme(previousTheme =>
               previousTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK,
