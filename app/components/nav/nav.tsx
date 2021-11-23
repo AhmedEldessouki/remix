@@ -18,9 +18,10 @@ function Nav() {
   }, [theme])
 
   return (
-    <nav>
+    <nav className="flex gap-2.5 items-center justify-center px-2.5 h-14">
+      <h1 className="flex-grow"></h1>
       <button
-        className="flex m-4 w-14 h-9 bg-mm-100 border-4 border-mm-300 rounded-3xl drop-shadow-sm"
+        className="w-14 h-9 bg-trans border-4 border-blueGray-600 rounded-3xl drop-shadow-sm"
         onClick={() => {
           setTheme(previousTheme =>
             previousTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK,
@@ -28,14 +29,16 @@ function Nav() {
         }}
       >
         <motion.div
-          className={'w-6 h-6 bg-mm-100 rounded-full shadow-sm '}
+          className={'w-6 h-6 bg-blueGray-600 rounded-full shadow-sm '}
           style={{x, rotate: 180, margin: '0.12rem'}}
           transition={{duration: 0.5}}
           animate={theme !== null && theme}
           variants={variants}
+          aria-label={`Theme Switch from ${
+            theme === Theme.DARK ? 'Dark' : 'Light'
+          } to ${theme === Theme.LIGHT ? 'Light' : 'Dark'}`}
         />
       </button>
-
       <DropDown />
     </nav>
   )
