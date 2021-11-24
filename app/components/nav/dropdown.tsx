@@ -69,11 +69,11 @@ export default function DropDown() {
           variants={fade}
         />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className="flex flex-col gap-2 items-center justify-center p-4 text-my-100 bg-mm-100 rounded">
+      <DropdownMenu.Content className="slide-down-app flex flex-col gap-2 items-center justify-center p-4 text-my-100 bg-mm-100 rounded">
         <Item>Some Value</Item>
         <Item>Some Value</Item>
         <Item>Some Value</Item>
-        <DropdownMenu.Arrow className="text-center" />
+        <DropdownMenu.Arrow />
       </DropdownMenu.Content>
     </DropdownMenu.Root>
   )

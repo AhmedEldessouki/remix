@@ -68,3 +68,16 @@ nav {
   display: grid;
   grid-template-columns: 1fr 75px 75px;
 }
+
+@keyframes slide {
+  0% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.slide-down-app {
+  animation: slide 300ms ease-in-out;
+}
