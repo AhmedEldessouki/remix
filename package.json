@@ -13,6 +13,7 @@
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\"",
     "type:check": "tsc -b",
     "postinstall": "remix setup node && metronome setup",
+    "prepare": "husky install",
     "start": "remix-serve build"
   },
   "dependencies": {
@@ -41,11 +42,14 @@
     "autoprefixer": "^10.4.0",
     "eslint": "^7.32.0",
     "eslint-config-kentcdodds": "^19.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "postcss": "^8.3.11",
     "postcss-cli": "^9.0.2",
     "postcss-import": "^14.0.2",
     "prettier": "^2.4.1",
     "prettier-plugin-tailwind": "^2.2.12",
+    "pretty-quick": "^3.1.2",
     "tailwindcss": "^2.2.19",
     "typescript": "^4.1.2"
   },
@@ -58,5 +62,15 @@
     "coverage",
     "build",
     "public/build"
-  ]
+  ],
+  "lint-staged": {
+    "*.+(js|jsx|ts|tsx)": [
+      "npm lint",
+      "npm type:check",
+      "pretty-quick --staged"
+    ],
+    "*.+(json|yml|yaml|css|md|mdx)": [
+      "pretty-quick --staged"
+    ]
+  }
 }
