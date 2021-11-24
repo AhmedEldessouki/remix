@@ -21,7 +21,6 @@ module.exports = {
     },
     colors: {
       // color scheme is defined in /app.css
-      ...colors,
       trans: 'transparent',
       current: 'currentColor',
       white: colors.white,

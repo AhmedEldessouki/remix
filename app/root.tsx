@@ -23,6 +23,7 @@ import appStyles from './styles/app.css'
 import {AccessibleIcon} from '@radix-ui/react-accessible-icon'
 import {DataSession} from '../types'
 import Nav from './components/nav/nav'
+import {motion} from 'framer-motion'
 
 export const links: LinksFunction = () => {
   // ! Limit the Fonts to where it's being used. Unless It's commonly Used
@@ -156,11 +157,19 @@ function AppWithoutProvider() {
       <Outlet />
       <footer>
         <hr />
-        <div className="prose-lg flex gap-1 items-center justify-center italic">
+        <div className="prose-lg flex gap-1 items-center justify-center p-4 italic italic font-light">
           <span>This Website Was Build Using</span>
-          <AccessibleIcon label="remix">
-            <img src="/remix.png" alt="remix" />
-          </AccessibleIcon>
+          <motion.a
+            whileHover={{scale: 1.2}}
+            whileFocus={{outline: 'dodgerblue'}}
+            href="https://remix.run"
+            target="_blank"
+            className="rounded focus-within:ring-2 focus:ring-2 ring-sky-600 ring-offset-2"
+          >
+            <AccessibleIcon label="remix">
+              <img src="/remix.png" alt="remix" />
+            </AccessibleIcon>
+          </motion.a>
         </div>
       </footer>
     </Document>
