@@ -7,6 +7,7 @@ import {
   useCatch,
   json,
 } from 'remix'
+import React from 'react'
 import type {LinksFunction, LoaderFunction, HeadersFunction} from 'remix'
 import {Outlet} from 'react-router-dom'
 import {IdProvider} from '@radix-ui/react-id'
@@ -122,7 +123,7 @@ function Document({
   title?: string
   theme?: Theme | null
 }) {
-  let data = useLoaderData<DataSession>()
+  const data = useLoaderData<DataSession>()
 
   return (
     <html lang="en" className={theme ? theme : ''}>
@@ -130,7 +131,7 @@ function Document({
         <meta charSet="utf-8" />
         <title>{title ? title : 'Ahmed ElDessouki'}</title>
         <Meta />
-        <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.session?.theme)} />
+        <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.session.theme)} />
         <Links />
       </head>
       <body className="text-my-100 bg-my-600">
@@ -143,7 +144,7 @@ function Document({
 }
 
 function AppWithoutProvider() {
-  let data = useLoaderData<DataSession>()
+  const data = useLoaderData<DataSession>()
   return (
     <Document theme={data.session.theme}>
       <Nav />
@@ -170,10 +171,10 @@ function AppWithoutProvider() {
 }
 
 export default function App() {
-  let data = useLoaderData<DataSession>()
+  const data = useLoaderData<DataSession>()
 
   return (
-    <ThemeProvider specifiedTheme={data.session?.theme}>
+    <ThemeProvider specifiedTheme={data.session.theme}>
       <IdProvider>
         <AppWithoutProvider />
       </IdProvider>
@@ -182,7 +183,7 @@ export default function App() {
 }
 
 export function CatchBoundary() {
-  let caught = useCatch()
+  const caught = useCatch()
 
   switch (caught.status) {
     case 401:

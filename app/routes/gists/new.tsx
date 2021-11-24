@@ -2,9 +2,9 @@ import React from 'react'
 import type {ActionFunction} from 'remix'
 import {redirect, Form, useTransition} from 'remix'
 
-export let action: ActionFunction = async ({request}) => {
+export const action: ActionFunction = async ({request}) => {
   // Very important or else it won't work :)
-  let token = 'insert your github token here'
+  const token = 'insert your github token here'
   // in a real world scenario you'd want this token to be
   // an enviornment variable on your server, but as long
   // as you only use it in this action, it won't get
@@ -12,12 +12,12 @@ export let action: ActionFunction = async ({request}) => {
 
   // get the form body out of the request using standard web
   // APIs on the server
-  let body = new URLSearchParams(await request.text())
+  const body = new URLSearchParams(await request.text())
 
   // pull off what we need from the form, note they are
   // named the same thing as the `<input/>` in the form.
-  let fileName = body.get('fileName')
-  let content = body.get('content')
+  const fileName = body.get('fileName')
+  const content = body.get('content')
 
   // redirect out of here to go see our new gist!
   return redirect('/gists')
@@ -44,7 +44,7 @@ function Loading() {
 }
 
 export default function NewGist() {
-  let transition = useTransition()
+  const transition = useTransition()
   return (
     <>
       <h2>New Gist!</h2>

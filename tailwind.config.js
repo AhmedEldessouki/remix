@@ -167,14 +167,6 @@ module.exports = {
                     fontSize: fontSize('2xl'),
                   },
                 },
-                h3: {
-                  fontSize: fontSize('xl'),
-                  marginTop: theme('spacing.16'),
-                  marginBottom: theme('spacing.10'),
-                  [`@media (min-width: ${theme('screens.lg')})`]: {
-                    fontSize: fontSize('2xl'),
-                  },
-                },
                 'h4, h5, h6': {
                   fontSize: fontSize('lg'),
                   [`@media (min-width: ${theme('screens.lg')})`]: {

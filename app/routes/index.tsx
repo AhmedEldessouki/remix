@@ -1,24 +1,24 @@
+import React from 'react'
 import type {MetaFunction, LoaderFunction} from 'remix'
 import {useLoaderData} from 'remix'
 import {Link} from 'react-router-dom'
 import {motion} from 'framer-motion'
 import {Popover, PopoverContent, PopoverTrigger} from '~/components/popover'
 import DropDown from '~/components/nav/dropdown'
-import {AccessibleIcon} from '@radix-ui/react-accessible-icon'
 
-export let meta: MetaFunction = () => {
+export const meta: MetaFunction = () => {
   return {
     title: 'Remix Starter',
     description: 'Welcome to remix!',
   }
 }
 
-export let loader: LoaderFunction = async () => {
+export const loader: LoaderFunction = async () => {
   return {message: 'this is awesome 😎'}
 }
 
 export default function Index() {
-  let data = useLoaderData()
+  const data = useLoaderData()
 
   return (
     <div
@@ -73,82 +73,64 @@ export default function Index() {
       </Popover>
       <h2 className="prose">Welcome to Remix!</h2>
       <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
-        <span className={`bg-mm-100` + ` w-20 h-10 text-center`}>100</span>
-        <span className={`bg-mm-200` + ` w-20 h-10 text-center`}>200</span>
-        <span className={`bg-mm-300` + ` w-20 h-10 text-center`}>300</span>
-        <span className={`bg-mm-400` + ` w-20 h-10 text-center`}>400</span>
-        <span className={`bg-mm-500` + ` w-20 h-10 text-center`}>500</span>
-        <span className={`bg-mm-600` + ` w-20 h-10 text-center`}>600</span>
-        <span className={`bg-mm-700` + ` w-20 h-10 text-center`}>700</span>
-        <span className={`bg-mm-800` + ` w-20 h-10 text-center`}>800</span>
-        <span className={`bg-mm-900` + ` w-20 h-10 text-center`}>900</span>
+        <span className="w-20 h-10 text-center bg-mm-100">100</span>
+        <span className="w-20 h-10 text-center bg-mm-200">200</span>
+        <span className="w-20 h-10 text-center bg-mm-300">300</span>
+        <span className="w-20 h-10 text-center bg-mm-400">400</span>
+        <span className="w-20 h-10 text-center bg-mm-500">500</span>
+        <span className="w-20 h-10 text-center bg-mm-600">600</span>
+        <span className="w-20 h-10 text-center bg-mm-700">700</span>
+        <span className="w-20 h-10 text-center bg-mm-800">800</span>
+        <span className="w-20 h-10 text-center bg-mm-900">900</span>
       </div>
 
       <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
-        <span className={`bg-sky-50` + ` w-20 h-10 text-center`}>50</span>
-        <span className={`bg-sky-100` + ` w-20 h-10 text-center`}>100</span>
-        <span className={`bg-sky-200` + ` w-20 h-10 text-center`}>200</span>
-        <span className={`bg-sky-300` + ` w-20 h-10 text-center`}>300</span>
-        <span className={`bg-sky-400` + ` w-20 h-10 text-center`}>400</span>
-        <span className={`bg-sky-500` + ` w-20 h-10 text-center`}>500</span>
-        <span className={`bg-sky-600` + ` w-20 h-10 text-center`}>600</span>
-        <span className={`bg-sky-700` + ` w-20 h-10 text-center`}>700</span>
-        <span className={`bg-sky-800` + ` w-20 h-10 text-center`}>800</span>
-        <span className={`bg-sky-900` + ` w-20 h-10 text-center`}>900</span>
+        <span className="w-20 h-10 text-center bg-sky-50">50</span>
+        <span className="w-20 h-10 text-center bg-sky-100">100</span>
+        <span className="w-20 h-10 text-center bg-sky-200">200</span>
+        <span className="w-20 h-10 text-center bg-sky-300">300</span>
+        <span className="w-20 h-10 text-center bg-sky-400">400</span>
+        <span className="w-20 h-10 text-center bg-sky-500">500</span>
+        <span className="w-20 h-10 text-center bg-sky-600">600</span>
+        <span className="w-20 h-10 text-center bg-sky-700">700</span>
+        <span className="w-20 h-10 text-center bg-sky-800">800</span>
+        <span className="w-20 h-10 text-center bg-sky-900">900</span>
       </div>
       <div className="dark:text-my-900 flex gap-2 items-center justify-center h-14 text-center">
-        <span className={`bg-green-50` + ` w-20 h-10 text-center`}>50</span>
-        <span className={`bg-green-100` + ` w-20 h-10 text-center`}>100</span>
-        <span className={`bg-green-200` + ` w-20 h-10 text-center`}>200</span>
-        <span className={`bg-green-300` + ` w-20 h-10 text-center`}>300</span>
-        <span className={`bg-green-400` + ` w-20 h-10 text-center`}>400</span>
-        <span className={`bg-green-500` + ` w-20 h-10 text-center`}>500</span>
-        <span className={`bg-green-600` + ` w-20 h-10 text-center`}>600</span>
-        <span className={`bg-green-700` + ` w-20 h-10 text-center`}>700</span>
-        <span className={`bg-green-800` + ` w-20 h-10 text-center`}>800</span>
-        <span className={`bg-green-900` + ` w-20 h-10 text-center`}>900</span>
+        <span className="w-20 h-10 text-center bg-green-50">50</span>
+        <span className="bg-green-100 w-20 h-10 text-center">100</span>
+        <span className="bg-green-200 w-20 h-10 text-center">200</span>
+        <span className="bg-green-300 w-20 h-10 text-center">300</span>
+        <span className="w-20 h-10 text-center bg-green-400">400</span>
+        <span className="w-20 h-10 text-center bg-green-500">500</span>
+        <span className="bg-green-600 w-20 h-10 text-center">600</span>
+        <span className="bg-green-700 w-20 h-10 text-center">700</span>
+        <span className="bg-green-800 w-20 h-10 text-center">800</span>
+        <span className="bg-green-900 w-20 h-10 text-center">900</span>
       </div>
       <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
-        <span className={`bg-red-50` + ` w-20 h-10 text-center`}>50</span>
-        <span className={`bg-red-100` + ` w-20 h-10 text-center`}>100</span>
-        <span className={`bg-red-200` + ` w-20 h-10 text-center`}>200</span>
-        <span className={`bg-red-300` + ` w-20 h-10 text-center`}>300</span>
-        <span className={`bg-red-400` + ` w-20 h-10 text-center`}>400</span>
-        <span className={`bg-red-500` + ` w-20 h-10 text-center`}>500</span>
-        <span className={`bg-red-600` + ` w-20 h-10 text-center`}>600</span>
-        <span className={`bg-red-700` + ` w-20 h-10 text-center`}>700</span>
-        <span className={`bg-red-800` + ` w-20 h-10 text-center`}>800</span>
-        <span className={`bg-red-900` + ` w-20 h-10 text-center`}>900</span>
+        <span className="w-20 h-10 text-center bg-red-50">50</span>
+        <span className="bg-red-100 w-20 h-10 text-center">100</span>
+        <span className="bg-red-200 w-20 h-10 text-center">200</span>
+        <span className="bg-red-300 w-20 h-10 text-center">300</span>
+        <span className="w-20 h-10 text-center bg-red-400">400</span>
+        <span className="w-20 h-10 text-center bg-red-500">500</span>
+        <span className="bg-red-600 w-20 h-10 text-center">600</span>
+        <span className="bg-red-700 w-20 h-10 text-center">700</span>
+        <span className="bg-red-800 w-20 h-10 text-center">800</span>
+        <span className="bg-red-900 w-20 h-10 text-center">900</span>
       </div>
       <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
-        <span className={`bg-blueGray-50` + ` w-20 h-10 text-center`}>50</span>
-        <span className={`bg-blueGray-100` + ` w-20 h-10 text-center`}>
-          100
-        </span>
-        <span className={`bg-blueGray-200` + ` w-20 h-10 text-center`}>
-          200
-        </span>
-        <span className={`bg-blueGray-300` + ` w-20 h-10 text-center`}>
-          300
-        </span>
-        <span className={`bg-blueGray-400` + ` w-20 h-10 text-center`}>
-          400
-        </span>
-        <span className={`bg-blueGray-500` + ` w-20 h-10 text-center`}>
-          500
-        </span>
-        <span className={`bg-blueGray-600` + ` w-20 h-10 text-center`}>
-          600
-        </span>
-        <span className={`bg-blueGray-700` + ` w-20 h-10 text-center`}>
-          700
-        </span>
-        <span className={`bg-blueGray-800` + ` w-20 h-10 text-center`}>
-          800
-        </span>
-        <span className={`bg-blueGray-900` + ` w-20 h-10 text-center`}>
-          900
-        </span>
+        <span className="w-20 h-10 text-center bg-blueGray-50">50</span>
+        <span className="w-20 h-10 text-center bg-blueGray-100">100</span>
+        <span className="w-20 h-10 text-center bg-blueGray-200">200</span>
+        <span className="w-20 h-10 text-center bg-blueGray-300">300</span>
+        <span className="w-20 h-10 text-center bg-blueGray-400">400</span>
+        <span className="w-20 h-10 text-center bg-blueGray-500">500</span>
+        <span className="w-20 h-10 text-center bg-blueGray-600">600</span>
+        <span className="w-20 h-10 text-center bg-blueGray-700">700</span>
+        <span className="w-20 h-10 text-center bg-blueGray-800">800</span>
+        <span className="w-20 h-10 text-center bg-blueGray-900">900</span>
       </div>
       <Link className="" to="/gists">
         Gists

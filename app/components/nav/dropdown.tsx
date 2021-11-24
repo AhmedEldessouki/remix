@@ -43,6 +43,7 @@ const fade = {
 
 export default function DropDown() {
   const [isOpen, setIsOpen] = React.useState(false)
+
   return (
     <DropdownMenu.Root onOpenChange={() => setIsOpen(state => !state)}>
       <DropdownMenu.Trigger className="mx-auto px-3 py-1.5 border-4 border-blueGray-600 border-opacity-100 rounded-lg shadow-inner">
@@ -53,7 +54,7 @@ export default function DropDown() {
           })}
           animate={isOpen ? 'open' : 'closed'}
           variants={turnLeft}
-        ></motion.div>
+        />
         <motion.div
           className={clsx('mb-1 w-5 h-1 rounded-sm', {
             'bg-red-400': isOpen,
@@ -61,12 +62,12 @@ export default function DropDown() {
           })}
           animate={isOpen ? 'open' : 'closed'}
           variants={turnRight}
-        ></motion.div>
+        />
         <motion.div
           className="w-5 h-1 bg-blueGray-600 rounded-sm"
           animate={isOpen ? 'open' : 'closed'}
           variants={fade}
-        ></motion.div>
+        />
       </DropdownMenu.Trigger>
       <DropdownMenu.Content className="flex flex-col gap-2 items-center justify-center p-4 text-my-100 bg-mm-100 rounded">
         <Item>Some Value</Item>

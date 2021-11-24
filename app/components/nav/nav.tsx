@@ -18,7 +18,7 @@ function Nav() {
   }, [theme])
 
   return (
-    <nav className="min-h-sm gap-2.5 items-center px-2.5 w-full">
+    <nav className="gap-2.5 items-center px-2.5 w-full min-h-sm">
       <div className="prose">
         <h1 className="prose-sky text-left">Ahmed Eldessouki</h1>
       </div>
@@ -31,7 +31,7 @@ function Nav() {
         }}
       >
         <motion.div
-          className={'w-6 h-6 bg-blueGray-600 rounded-full shadow-sm '}
+          className="w-6 h-6 bg-blueGray-600 rounded-full shadow-sm"
           style={{x, rotate: 180, margin: '0.12rem'}}
           transition={{duration: 0.5}}
           animate={theme !== null && theme}
