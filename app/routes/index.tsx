@@ -71,7 +71,7 @@ export default function Index() {
           </div>
         </PopoverContent>
       </Popover>
-      <h2>Welcome to Remix!</h2>
+      <h2 className="prose">Welcome to Remix!</h2>
       <div className="flex gap-2 items-center justify-center h-14 text-center dark:text-my-100 bg-gradient-to-r">
         <span className={`bg-mm-100` + ` w-20 h-10 text-center`}>100</span>
         <span className={`bg-mm-200` + ` w-20 h-10 text-center`}>200</span>
@@ -186,16 +186,16 @@ export default function Index() {
       <h2 className="prose text-blue dark:text-my-100 italic font-black">
         The quick brown fox jumps over the lazy dog.
       </h2>
-      <h3 className="-2xl italic font-black backdrop-sepia">
+      <h3 className="prose -2xl italic font-black backdrop-sepia">
         The quick brown fox jumps over the lazy dog.
       </h3>
-      <h4 className="italic font-black">
+      <h4 className="prose italic font-black">
         The quick brown fox jumps over the lazy dog.
       </h4>
-      <h5 className="italic font-black">
+      <h5 className="prose italic font-black">
         The quick brown fox jumps over the lazy dog.
       </h5>
-      <h6 className="italic font-black">
+      <h6 className="prose italic font-black">
         The quick brown fox jumps over the lazy dog.
       </h6>
     </div>
