@@ -96,12 +96,6 @@ export const links: LinksFunction = () => {
 }
 
 export const loader: LoaderFunction = async ({request}) => {
-  // because this is called for every route, we'll do an early return for anything
-  // that has a other route setup. The response will be handled there.
-  // if (pathedRoutes[new URL(request.url).pathname]) {
-  //   return new Response()
-  // }
-
   const themeSession = await getThemeSession(request)
 
   const data: DataSession = {
