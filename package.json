@@ -4,10 +4,14 @@
   "description": "",
   "license": "",
   "scripts": {
-    "watch:css": "postcss styles --base styles --dir app/styles -w",
+    "watch:css": "npm run build:css -- --w",
     "build:css": "postcss styles/**/*.css --base styles --dir app/styles",
     "build": "npm run build:css && remix build",
     "dev": "remix dev",
+    "clean": "rimraf ./node_modules/.cache ./build ./public/build \"./app/styles/**/*.css\"",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext js,jsx,ts,tsx .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\"",
+    "type:check": "tsc -b",
     "postinstall": "remix setup node && metronome setup",
     "start": "remix-serve build"
   },
@@ -35,6 +39,8 @@
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "autoprefixer": "^10.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-kentcdodds": "^19.2.0",
     "postcss": "^8.3.11",
     "postcss-cli": "^9.0.2",
     "postcss-import": "^14.0.2",
@@ -46,5 +52,11 @@
   "engines": {
     "node": ">=14"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "eslintIgnore": [
+    "node_modules",
+    "coverage",
+    "build",
+    "public/build"
+  ]
 }

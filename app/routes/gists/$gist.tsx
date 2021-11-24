@@ -10,12 +10,12 @@ interface User {
   name: string
 }
 
-export let loader: LoaderFunction = ({params}) => {
+export const loader: LoaderFunction = ({params}) => {
   return fetch(`https://api.github.com/users/${params.gist}`)
 }
 
 export default function TeamMember() {
-  let user = useLoaderData<User>()
+  const user = useLoaderData<User>()
   return (
     <div>
       <h3>{user.name}</h3>

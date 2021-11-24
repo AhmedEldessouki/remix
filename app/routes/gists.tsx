@@ -3,7 +3,7 @@ import {Link, Outlet, useLoaderData} from 'remix'
 import type {LoaderFunction} from 'remix'
 import type {Await} from '../../types'
 
-export let loader: LoaderFunction = () => {
+export const loader: LoaderFunction = () => {
   return fetch('https://api.github.com/gists')
 }
 
@@ -17,7 +17,7 @@ export function meta({data}: {data: Gists}) {
 }
 
 export default function Gists() {
-  let data = useLoaderData()
+  const data = useLoaderData()
   const [count, setCount] = React.useState(0)
 
   return (
