@@ -45,7 +45,7 @@ export default function DropDown() {
   const [isOpen, setIsOpen] = React.useState(false)
   return (
     <DropdownMenu.Root onOpenChange={() => setIsOpen(state => !state)}>
-      <DropdownMenu.Trigger className="px-3 py-1.5 border-4 border-blueGray-600 border-opacity-100 rounded-lg shadow-inner">
+      <DropdownMenu.Trigger className="mx-auto px-3 py-1.5 border-4 border-blueGray-600 border-opacity-100 rounded-lg shadow-inner">
         <motion.div
           className={clsx('mb-1 w-5 h-1 rounded-sm', {
             'bg-red-400': isOpen,

@@ -63,3 +63,8 @@
   --mm-800: hsla(214, 97%, 27%, 0.15);
   --mm-900: hsla(239, 94%, 19%, 0.15);
 }
+
+nav {
+  display: grid;
+  grid-template-columns: 1fr 75px 75px;
+}

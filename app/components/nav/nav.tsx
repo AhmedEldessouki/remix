@@ -18,10 +18,12 @@ function Nav() {
   }, [theme])
 
   return (
-    <nav className="flex gap-2.5 items-center justify-center px-2.5 h-14">
-      <h1 className="flex-grow"></h1>
+    <nav className="min-h-sm gap-2.5 items-center px-2.5 w-full">
+      <div className="prose">
+        <h1 className="prose-sky text-left">Ahmed Eldessouki</h1>
+      </div>
       <button
-        className="w-14 h-9 bg-trans border-4 border-blueGray-600 rounded-3xl drop-shadow-sm"
+        className="mx-auto w-14 h-9 bg-trans border-4 border-blueGray-600 rounded-3xl drop-shadow-sm"
         onClick={() => {
           setTheme(previousTheme =>
             previousTheme === Theme.DARK ? Theme.LIGHT : Theme.DARK,

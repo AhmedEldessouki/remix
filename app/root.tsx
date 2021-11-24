@@ -10,20 +10,19 @@ import {
 import type {LinksFunction, LoaderFunction, HeadersFunction} from 'remix'
 import {Outlet} from 'react-router-dom'
 import {IdProvider} from '@radix-ui/react-id'
+import {AccessibleIcon} from '@radix-ui/react-accessible-icon'
+import {motion} from 'framer-motion'
 import {
   NonFlashOfWrongThemeEls,
   Theme,
   ThemeProvider,
-  useTheme,
 } from './utils/theme-provider'
 import {getThemeSession} from './utils/theme.server'
+import Nav from './components/nav/nav'
+import type {DataSession} from '../types'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
 import appStyles from './styles/app.css'
-import {AccessibleIcon} from '@radix-ui/react-accessible-icon'
-import {DataSession} from '../types'
-import Nav from './components/nav/nav'
-import {motion} from 'framer-motion'
 
 export const links: LinksFunction = () => {
   // ! Limit the Fonts to where it's being used. Unless It's commonly Used

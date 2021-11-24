@@ -79,7 +79,8 @@ module.exports = {
         '10vw': '10vw', // page margin
       },
       minHeight: {
-        '98vh': '98vh', // screen - navbar height (lg: only)
+        sm: '70px',
+        '98vh': '98vh',
       },
       maxWidth: {
         '8xl': '96rem',
