@@ -25,7 +25,7 @@ export default function Gists() {
       <button onClick={() => setCount(n => n + 1)}>{count}</button>
       <h2>Public Gists</h2>
       <Link to="/">Home</Link>
-      <ol className="p-10 text-blue-900 dark:text-gray-400 dark:bg-gray-800 list-decimal">
+      <ol className="text-blue-900 dark:text-gray-400 dark:bg-gray-800 p-10 list-decimal">
         {Array.isArray(data) &&
           data.map(gist => (
             <li key={gist.id}>
