@@ -1,8 +1,7 @@
 {
+  "name": "new-portfolio",
   "private": true,
-  "name": "remix-app-template",
-  "description": "",
-  "license": "",
+  "version": "v3.0.0",
   "scripts": {
     "watch:css": "npm run clean && npm run build:css -- --w",
     "build:css": "postcss styles/**/*.css --base styles --dir app/styles",
@@ -71,7 +70,7 @@
       "npm run lint",
       "pretty-quick --staged"
     ],
-    "*.+(json|yml|yaml|css|md|mdx)": [
+    "*.+(json|yml|yaml|toml|css|md|mdx)": [
       "pretty-quick --staged"
     ]
   }
