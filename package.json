@@ -4,7 +4,7 @@
   "description": "",
   "license": "",
   "scripts": {
-    "watch:css": "npm run build:css -- --w",
+    "watch:css": "npm run clean && npm run build:css -- --w",
     "build:css": "postcss styles/**/*.css --base styles --dir app/styles",
     "build": "npm run build:css && remix build",
     "dev": "remix dev",
