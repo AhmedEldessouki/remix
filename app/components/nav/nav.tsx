@@ -20,7 +20,7 @@ function Nav() {
   return (
     <nav className="gap-2.5 items-center px-2.5 w-full min-h-sm">
       <div className="prose">
-        <h1 className="prose-sky text-left">Ahmed Eldessouki</h1>
+        <h1 className="prose text-left">Ahmed Eldessouki</h1>
       </div>
       <button
         className="mx-auto w-14 h-9 bg-trans border-4 border-blueGray-600 rounded-3xl drop-shadow-sm"

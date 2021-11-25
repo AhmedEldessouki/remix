@@ -1,6 +1,7 @@
-/* Adding Css classes to PROSE */
-/* I think this is a bug in the tailwind/typography thing */
-.dark .prose * {
+@tailwind base;
+@tailwind components;
+
+.dark .prose *:not(h1) {
   @apply text-blueGray-200;
 }
 .prose a {

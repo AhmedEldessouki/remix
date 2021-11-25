@@ -20,7 +20,7 @@ export default function Index() {
 
   return (
     <div
-      className="prose max-w-full text-black dark:text-my-100"
+      className="prose max-w-full min-h-mx text-black dark:text-my-100"
       style={{textAlign: 'center', padding: 20}}
     >
       Landing Page

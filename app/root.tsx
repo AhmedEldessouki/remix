@@ -129,7 +129,7 @@ function Document({
     <html lang="en" className={theme ? theme : ''}>
       <head>
         <meta charSet="utf-8" />
-        <title>{title ? title : 'Ahmed ElDessouki'}</title>
+        <title>{title ?? 'Ahmed ElDessouki'}</title>
         <Meta />
         <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.session.theme)} />
         <Links />
@@ -150,8 +150,8 @@ function AppWithoutProvider() {
       <Nav />
       <Outlet />
       <footer>
-        <hr />
-        <div className="prose-lg flex gap-1 items-center justify-center p-4 italic italic font-light">
+        <hr className="m-8 text-blueGray-600 border-2 rounded-3xl" />
+        <div className="prose-lg flex gap-1 items-center justify-center m-8 italic font-light">
           <span>This Website Was Build Using</span>
           <motion.a
             whileHover={{scale: 1.2}}

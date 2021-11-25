@@ -74,20 +74,21 @@ module.exports = {
         '7xl': '4.375rem', // 70px
       },
       spacing: {
-        '5vw': '5vw', // pull featured sections and navbar in the margin
-        '8vw': '8vw', // positions hero img inside the margin
-        '10vw': '10vw', // page margin
+        '5vw': '5vw',
+        '8vw': '8vw',
+        '10vw': '10vw',
       },
       minHeight: {
         sm: '70px',
+        mx: '73vh',
         '98vh': '98vh',
       },
       maxWidth: {
         '8xl': '96rem',
       },
       maxHeight: {
-        '50vh': '50vh', // max height for medium size hero images
-        '75vh': '75vh', // max height for giant size hero images
+        '50vh': '50vh',
+        '75vh': '75vh',
       },
 
       typography: theme => {
@@ -125,8 +126,8 @@ module.exports = {
                   fontSize: fontSize('lg'),
                 },
                 hr: {
-                  marginTop: theme('spacing.8'),
-                  marginBottom: theme('spacing.16'),
+                  margin: theme('spacing.8'),
+                  borderRadius: theme('spacing.4'),
                 },
                 ul: {
                   marginTop: 0,
@@ -150,6 +151,7 @@ module.exports = {
                   fontStyle: 'oblique !important',
                 },
                 'h1, h2': {
+                  color: theme('colors.blueGray.600'),
                   fontSize: fontSize('2xl'),
                   marginTop: theme('spacing.20'),
                   marginBottom: theme('spacing.10'),
