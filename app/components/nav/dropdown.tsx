@@ -48,7 +48,7 @@ export default function DropDown() {
     <DropdownMenu.Root onOpenChange={() => setIsOpen(state => !state)}>
       <DropdownMenu.Trigger className="mx-auto px-3 py-1.5 border-4 border-blueGray-600 border-opacity-100 rounded-lg shadow-inner">
         <motion.div
-          className={clsx('mb-1 w-5 h-1 rounded-sm', {
+          className={clsx('app-block', {
             'bg-red-400': isOpen,
             'bg-blueGray-600': !isOpen,
           })}
@@ -56,7 +56,7 @@ export default function DropDown() {
           variants={turnLeft}
         />
         <motion.div
-          className={clsx('mb-1 w-5 h-1 rounded-sm', {
+          className={clsx('app-block', {
             'bg-red-400': isOpen,
             'bg-blueGray-600': !isOpen,
           })}
@@ -64,7 +64,7 @@ export default function DropDown() {
           variants={turnRight}
         />
         <motion.div
-          className="w-5 h-1 bg-blueGray-600 rounded-sm"
+          className="app-block bg-blueGray-600"
           animate={isOpen ? 'open' : 'closed'}
           variants={fade}
         />

@@ -81,3 +81,12 @@ nav {
 .slide-down-app {
   animation: slide 300ms ease-in-out;
 }
+
+.app-block {
+  border-radius: 0.125rem;
+  width: 1.25rem;
+  height: 0.25rem;
+}
+.app-block:not(:last-child) {
+  margin-bottom: 4px;
+}
