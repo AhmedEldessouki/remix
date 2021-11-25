@@ -1,0 +1,366 @@
+{
+  "asset": {
+    "generator": "Khronos glTF Blender I/O v1.6.16",
+    "version": "2.0"
+  },
+  "extensionsUsed": ["KHR_materials_transmission"],
+  "scene": 0,
+  "scenes": [
+    {
+      "name": "Scene",
+      "nodes": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    },
+    {
+      "name": "Scene.001"
+    }
+  ],
+  "nodes": [
+    {
+      "mesh": 0,
+      "name": "Torus.004"
+    },
+    {
+      "name": "TrueIsoCam",
+      "rotation": [
+        0.4247112274169922, 0.33985042572021484, -0.17592111229896545,
+        0.8204717040061951
+      ],
+      "translation": [
+        30.608610153198242, 30.608610153198242, 30.608610153198242
+      ]
+    },
+    {
+      "name": "ISO Primary",
+      "rotation": [
+        -0.0692441463470459, -0.24251876771450043, -0.6821871995925903,
+        0.6863020658493042
+      ],
+      "translation": [5.369445323944092, 0.3496083617210388, 1.397794485092163]
+    },
+    {
+      "name": "ISO Left",
+      "rotation": [
+        -0.14632518589496613, 0.5419149994850159, 0.800104022026062,
+        0.21154330670833588
+      ],
+      "translation": [
+        -3.779951572418213, -0.6332547664642334, 3.5336031913757324
+      ]
+    },
+    {
+      "name": "ISO Top",
+      "translation": [0, 4.189457416534424, -0.9681752920150757]
+    },
+    {
+      "name": "ISO Add On",
+      "translation": [
+        1.3706614971160889, -0.552612841129303, 0.000830531120300293
+      ]
+    },
+    {
+      "name": "Main Camera",
+      "rotation": [0.7071068286895752, 0, 0, 0.7071067094802856],
+      "translation": [0, 0, 9.73033618927002]
+    },
+    {
+      "name": "Front Addon",
+      "translation": [
+        1.4595177173614502, -0.963281512260437, -0.03942347690463066
+      ]
+    },
+    {
+      "name": "Front Primary Light",
+      "rotation": [
+        0.14808622002601624, -0.5069681406021118, -0.6878417730331421,
+        0.49792322516441345
+      ],
+      "translation": [3.626588821411133, -0.4704757034778595, 5.033079147338867]
+    },
+    {
+      "name": "Front Right Light",
+      "rotation": [
+        -0.4338149428367615, 0.4941633343696594, 0.6427600979804993,
+        0.39302241802215576
+      ],
+      "translation": [
+        -5.652316570281982, -0.12299716472625732, 0.9932624101638794
+      ]
+    },
+    {
+      "name": "Front Top Light",
+      "translation": [0, 5.072922706604004, -0.9681752920150757]
+    },
+    {
+      "name": "Dynamic Top Light",
+      "translation": [0, 5.072922706604004, -0.9681752920150757]
+    },
+    {
+      "name": "Dynamic Primary Light",
+      "rotation": [
+        0.13762283325195312, -0.3673444986343384, -0.6357458233833313,
+        0.664789617061615
+      ],
+      "translation": [4.246728897094727, 0.556270956993103, 3.4625091552734375]
+    },
+    {
+      "name": "Dynamic Right Light",
+      "rotation": [
+        -0.3903121054172516, 0.5190977454185486, 0.6700690388679504,
+        0.35944628715515137
+      ],
+      "translation": [
+        -4.896536350250244, -0.12263379991054535, 2.210984706878662
+      ]
+    },
+    {
+      "name": "Dynamic Add on",
+      "translation": [
+        -0.22875645756721497, -1.8482205867767334, 0.11469042301177979
+      ]
+    }
+  ],
+  "animations": [
+    {
+      "channels": [
+        {
+          "sampler": 0,
+          "target": {
+            "node": 0,
+            "path": "translation"
+          }
+        },
+        {
+          "sampler": 1,
+          "target": {
+            "node": 0,
+            "path": "rotation"
+          }
+        },
+        {
+          "sampler": 2,
+          "target": {
+            "node": 0,
+            "path": "scale"
+          }
+        }
+      ],
+      "name": "Torus.004Action",
+      "samplers": [
+        {
+          "input": 8,
+          "interpolation": "LINEAR",
+          "output": 9
+        },
+        {
+          "input": 8,
+          "interpolation": "LINEAR",
+          "output": 10
+        },
+        {
+          "input": 8,
+          "interpolation": "LINEAR",
+          "output": 11
+        }
+      ]
+    }
+  ],
+  "materials": [
+    {
+      "doubleSided": true,
+      "emissiveFactor": [1, 1, 1],
+      "extensions": {
+        "KHR_materials_transmission": {
+          "transmissionFactor": 1
+        }
+      },
+      "name": "Color - Bulb Light",
+      "pbrMetallicRoughness": {
+        "metallicFactor": 0,
+        "roughnessFactor": 0.10000000149011612
+      }
+    },
+    {
+      "doubleSided": true,
+      "name": "Silver Metal",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.6847962737083435, 0.6847962737083435, 0.6847962737083435, 1
+        ],
+        "roughnessFactor": 0.25
+      }
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Torus.005",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0
+        },
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 1
+        }
+      ]
+    }
+  ],
+  "accessors": [
+    {
+      "bufferView": 0,
+      "componentType": 5126,
+      "count": 11486,
+      "max": [0.6244855523109436, 0.9654130935668945, 0.6244855523109436],
+      "min": [-0.6244855523109436, -0.9172083139419556, -0.6244855523109436],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 1,
+      "componentType": 5126,
+      "count": 11486,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 2,
+      "componentType": 5126,
+      "count": 11486,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 3,
+      "componentType": 5123,
+      "count": 61440,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 4,
+      "componentType": 5126,
+      "count": 7900,
+      "max": [0.3657718598842621, -0.3575788736343384, 0.3657718896865845],
+      "min": [-0.36577194929122925, -0.9914759993553162, -0.3657717704772949],
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 5,
+      "componentType": 5126,
+      "count": 7900,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 6,
+      "componentType": 5126,
+      "count": 7900,
+      "type": "VEC2"
+    },
+    {
+      "bufferView": 7,
+      "componentType": 5123,
+      "count": 43008,
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 8,
+      "componentType": 5126,
+      "count": 3,
+      "max": [0.08333333333333333],
+      "min": [0],
+      "type": "SCALAR"
+    },
+    {
+      "bufferView": 9,
+      "componentType": 5126,
+      "count": 3,
+      "type": "VEC3"
+    },
+    {
+      "bufferView": 10,
+      "componentType": 5126,
+      "count": 3,
+      "type": "VEC4"
+    },
+    {
+      "bufferView": 11,
+      "componentType": 5126,
+      "count": 3,
+      "type": "VEC3"
+    }
+  ],
+  "bufferViews": [
+    {
+      "buffer": 0,
+      "byteLength": 137832,
+      "byteOffset": 0
+    },
+    {
+      "buffer": 0,
+      "byteLength": 137832,
+      "byteOffset": 137832
+    },
+    {
+      "buffer": 0,
+      "byteLength": 91888,
+      "byteOffset": 275664
+    },
+    {
+      "buffer": 0,
+      "byteLength": 122880,
+      "byteOffset": 367552
+    },
+    {
+      "buffer": 0,
+      "byteLength": 94800,
+      "byteOffset": 490432
+    },
+    {
+      "buffer": 0,
+      "byteLength": 94800,
+      "byteOffset": 585232
+    },
+    {
+      "buffer": 0,
+      "byteLength": 63200,
+      "byteOffset": 680032
+    },
+    {
+      "buffer": 0,
+      "byteLength": 86016,
+      "byteOffset": 743232
+    },
+    {
+      "buffer": 0,
+      "byteLength": 12,
+      "byteOffset": 829248
+    },
+    {
+      "buffer": 0,
+      "byteLength": 36,
+      "byteOffset": 829260
+    },
+    {
+      "buffer": 0,
+      "byteLength": 48,
+      "byteOffset": 829296
+    },
+    {
+      "buffer": 0,
+      "byteLength": 36,
+      "byteOffset": 829344
+    }
+  ],
+  "buffers": [
+    {
+      "byteLength": 829380,
+      "uri": "bulb2.bin"
+    }
+  ]
+}

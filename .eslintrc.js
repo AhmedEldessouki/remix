@@ -11,6 +11,7 @@ module.exports = {
   },
   rules: {
     'no-console': 'warn',
+    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/sort-type-union-intersection-members': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/alt-text': 'off', // it's not smart enough...
