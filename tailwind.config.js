@@ -9,7 +9,7 @@ module.exports = {
   darkMode: 'class',
   variants: {
     opacity: ['responsive', 'hover', 'focus', 'dark', 'group-hover'],
-    boxShadow: ['responsive', 'hover', 'focus', 'dark'],
+    boxShadow: ['responsive', 'active', 'hover', 'focus', 'dark'],
     animation: ['responsive', 'motion-safe', 'motion-reduce'],
     transitionProperty: ['responsive', 'motion-safe', 'motion-reduce'],
   },
@@ -26,42 +26,41 @@ module.exports = {
       white: colors.white,
       black: colors.black,
 
-      gray: {
-        100: colors.lightBlue['100'],
-        200: colors.lightBlue['200'],
-        300: colors.lightBlue['300'],
-        400: colors.lightBlue['400'],
-        500: colors.lightBlue['500'],
-        600: colors.lightBlue['600'],
-        700: colors.lightBlue['700'],
-        800: colors.lightBlue['800'],
-        900: colors.lightBlue['900'],
-      },
-      blueGray: {
-        500: colors.blueGray['500'],
+      my: {
+        100: 'var(--my01)',
+        200: 'var(--my02)',
+        300: 'var(--my03)',
+        400: 'var(--my04)',
+        500: 'var(--my05)',
+        600: 'var(--my06)',
       },
 
-      yellow: {
-        500: colors.yellow['500'],
+      mm: {
+        100: 'var(--mm-900)',
+        200: 'var(--mm-800)',
+        300: 'var(--mm-700)',
+        400: 'var(--mm-600)',
+        500: 'var(--mm-500)',
+        600: 'var(--mm-400)',
+        700: 'var(--mm-300)',
+        800: 'var(--mm-200)',
+        900: 'var(--mm-100)',
       },
-      blue: {
-        100: colors.blue['100'],
-        500: colors.blue['500'],
+      sky: colors.sky,
+      blueGray: colors.blueGray,
+      green: {
+        50: colors.green['50'],
+        400: colors.green['400'],
+        500: colors.green['500'],
       },
       red: {
+        50: colors.red['50'],
+        400: colors.red['400'],
         500: colors.red['500'],
-      },
-      green: {
-        100: colors.green['100'],
-        500: colors.green['500'],
-        600: colors.green['600'],
       },
     },
 
     extend: {
-      zIndex: {
-        '-10': '-10',
-      },
       fontFamily: {
         sans: ['lato', ...defaultTheme.fontFamily.sans],
       },
@@ -74,27 +73,22 @@ module.exports = {
         '6xl': '3.75rem', // 60px
         '7xl': '4.375rem', // 70px
       },
-      gridTemplateRows: {
-        'max-content': 'max-content',
-      },
       spacing: {
-        '5vw': '5vw', // pull featured sections and navbar in the margin
-        '8vw': '8vw', // positions hero img inside the margin
-        '10vw': '10vw', // page margin
+        '5vw': '5vw',
+        '8vw': '8vw',
+        '10vw': '10vw',
       },
-      height: {
-        hero: 'min(60rem, calc(100vh - 10rem))', // screen - navbar height (lg: only)
+      minHeight: {
+        sm: '70px',
+        mx: '73vh',
+        '98vh': '98vh',
       },
       maxWidth: {
         '8xl': '96rem',
       },
       maxHeight: {
-        '50vh': '50vh', // max height for medium size hero images
-        '75vh': '75vh', // max height for giant size hero images
-      },
-      rotate: {
-        '-135': '-135deg',
-        135: '135deg',
+        '50vh': '50vh',
+        '75vh': '75vh',
       },
 
       typography: theme => {
@@ -102,12 +96,6 @@ module.exports = {
         const fontSize = size => {
           const result = theme(`fontSize.${size}`)
           return Array.isArray(result) ? result[0] : result
-        }
-
-        const breakout = {
-          marginLeft: 0,
-          marginRight: 0,
-          gridColumn: '2 / span 10',
         }
 
         return {
@@ -138,34 +126,8 @@ module.exports = {
                   fontSize: fontSize('lg'),
                 },
                 hr: {
-                  marginTop: theme('spacing.8'),
-                  marginBottom: theme('spacing.16'),
-                },
-                pre: {
-                  color: 'var(--base05)',
-                  backgroundColor: 'var(--base00)',
-                  marginTop: 0,
-                  marginBottom: theme('spacing.8'),
-                  marginLeft: `-${theme('spacing.10vw')}`,
-                  marginRight: `-${theme('spacing.10vw')}`,
-                  padding: theme('spacing.8'),
-                  borderRadius: 0,
-
-                  [`@media (min-width: ${theme('screens.lg')})`]: {
-                    borderRadius: theme('borderRadius.lg'),
-                    ...breakout,
-                  },
-                },
-                '.embed': {
-                  position: 'relative',
-                  marginLeft: '-10vw',
-                  marginRight: '-10vw',
-                  [`@media (min-width: ${theme('screens.lg')})`]: {
-                    ...breakout,
-                  },
-                },
-                '.embed > div': {
-                  height: '0px',
+                  margin: theme('spacing.8'),
+                  borderRadius: theme('spacing.4'),
                 },
                 ul: {
                   marginTop: 0,
@@ -189,6 +151,7 @@ module.exports = {
                   fontStyle: 'oblique !important',
                 },
                 'h1, h2': {
+                  color: theme('colors.blueGray.600'),
                   fontSize: fontSize('2xl'),
                   marginTop: theme('spacing.20'),
                   marginBottom: theme('spacing.10'),
@@ -196,14 +159,6 @@ module.exports = {
                   fontStyle: 'normal',
                   [`@media (min-width: ${theme('screens.lg')})`]: {
                     fontSize: fontSize('3xl'),
-                  },
-                },
-                h3: {
-                  fontSize: fontSize('xl'),
-                  marginTop: theme('spacing.16'),
-                  marginBottom: theme('spacing.10'),
-                  [`@media (min-width: ${theme('screens.lg')})`]: {
-                    fontSize: fontSize('2xl'),
                   },
                 },
                 h3: {
@@ -233,68 +188,14 @@ module.exports = {
                   padding: theme('spacing.8'),
                   marginTop: 0,
                   marginBottom: theme('spacing.10'),
+                  color: theme('colors.my.200'),
+                  backgroundColor: theme('colors.my.600'),
                 },
                 'blockquote > :last-child': {
                   marginBottom: 0,
                 },
-              },
-            ],
-          },
-          // use prose-light instead of default, so it's easier to see theme differences
-          light: {
-            css: [
-              {
-                color: theme('colors.gray.500'),
-                a: {
-                  color: 'green',
-                },
-                strong: {
-                  color: theme('colors.black'),
-                },
-                hr: {
-                  borderColor: theme('colors.gray.200'),
-                },
-                code: {
-                  color: theme('colors.gray.800'),
-                },
-                'h1, h2, h3, h4, h5, h6': {
-                  color: theme('colors.black'),
-                },
-                blockquote: {
-                  color: theme('colors.gray.500'),
-                  backgroundColor: theme('colors.gray.100'),
-                },
-                'thead, tbody tr': {
-                  borderBottomColor: theme('colors.gray.200'),
-                },
-              },
-            ],
-          },
-          dark: {
-            css: [
-              {
-                color: theme('colors.blueGray.500'),
-                a: {
-                  color: 'green',
-                },
-                strong: {
-                  color: theme('colors.white'),
-                },
-                hr: {
-                  borderColor: theme('colors.gray.600'),
-                },
-                code: {
-                  color: theme('colors.gray.100'),
-                },
-                'h1, h2, h3, h4, h5, h6': {
-                  color: theme('colors.white'),
-                },
-                blockquote: {
-                  color: theme('colors.blueGray.500'),
-                  backgroundColor: theme('colors.gray.800'),
-                },
-                'thead, tbody tr': {
-                  borderBottomColor: theme('colors.gray.600'),
+                button: {
+                  fontSize: fontSize('xl'),
                 },
               },
             ],

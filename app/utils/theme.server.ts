@@ -9,6 +9,8 @@ const themeStorage = createCookieSessionStorage({
     // no theme for you on my 100th birthday! 😂
     expires: new Date('2088-10-18'),
     httpOnly: true,
+    secrets: ['AHMED_ELDESSOUKI_PORTFOLIO_COOKIE_THEME_SESSION'],
+    secure: true,
   },
 })
 

@@ -1,31 +1,40 @@
 {
+  "name": "new-portfolio",
   "private": true,
-  "name": "remix-app-template",
-  "description": "",
-  "license": "",
+  "version": "v3.0.0",
   "scripts": {
-    "watch:css": "postcss styles --base styles --dir app/styles -w",
+    "watch:css": "npm run clean && npm run build:css -- --w",
     "build:css": "postcss styles/**/*.css --base styles --dir app/styles",
     "build": "npm run build:css && remix build",
     "dev": "remix dev",
+    "clean": "rimraf ./node_modules/.cache ./build ./public/build \"./app/styles/**/*.css\"",
+    "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext js,jsx,ts,tsx .",
+    "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\"",
+    "typecheck": "tsc -b",
     "postinstall": "remix setup node && metronome setup",
+    "prepare": "husky install",
     "start": "remix-serve build"
   },
   "dependencies": {
     "@metronome-sh/node": "^1.0.5",
     "@metronome-sh/react": "^1.0.5",
+    "@radix-ui/react-accessible-icon": "^0.1.1",
     "@radix-ui/react-dropdown-menu": "^0.1.1",
     "@radix-ui/react-id": "^0.1.1",
     "@radix-ui/react-popover": "^0.1.1",
+    "@react-three/drei": "^7.22.9",
+    "@react-three/fiber": "^7.0.19",
     "@remix-run/react": "^0.21.0",
     "@remix-run/serve": "^0.21.0",
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/typography": "^0.4.1",
+    "clsx": "^1.1.1",
     "framer-motion": "^5.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.0.2",
-    "remix": "^1.0.0-rc.2"
+    "remix": "^1.0.3",
+    "three": "^0.134.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^0.21.0",
@@ -33,16 +42,36 @@
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
     "autoprefixer": "^10.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-kentcdodds": "^19.2.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "postcss": "^8.3.11",
     "postcss-cli": "^9.0.2",
     "postcss-import": "^14.0.2",
     "prettier": "^2.4.1",
     "prettier-plugin-tailwind": "^2.2.12",
+    "pretty-quick": "^3.1.2",
     "tailwindcss": "^2.2.19",
-    "typescript": "^4.1.2"
+    "typescript": "^4.5.2"
   },
   "engines": {
     "node": ">=14"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "eslintIgnore": [
+    "node_modules",
+    "coverage",
+    "build",
+    "public/build"
+  ],
+  "lint-staged": {
+    "*.+(js|jsx|ts|tsx)": [
+      "npm run lint",
+      "pretty-quick --staged"
+    ],
+    "*.+(json|yml|yaml|toml|css|md|mdx)": [
+      "pretty-quick --staged"
+    ]
+  }
 }
