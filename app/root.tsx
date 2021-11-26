@@ -31,42 +31,6 @@ export const links: LinksFunction = () => {
     {
       rel: 'preload',
       as: 'font',
-      href: '/fonts/lato-v20-latin-300.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
-
-    {
-      rel: 'preload',
-      as: 'font',
-      href: '/fonts/lato-v20-latin-700.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
-    {
-      rel: 'preload',
-      as: 'font',
-      href: '/fonts/lato-v20-latin-700italic.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
-    {
-      rel: 'preload',
-      as: 'font',
-      href: '/fonts/lato-v20-latin-900.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
-    {
-      rel: 'preload',
-      as: 'font',
-      href: '/fonts/lato-v20-latin-900italic.woff2',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-    },
-    {
-      rel: 'preload',
-      as: 'font',
       href: '/fonts/lato-v20-latin-regular.woff2',
       type: 'font/woff2',
       crossOrigin: 'anonymous',
