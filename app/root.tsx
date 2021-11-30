@@ -82,7 +82,6 @@ function AppWithoutProvider() {
 
 // https://remix.run/docs/en/v1/api/conventions#errorboundary
 export function ErrorBoundary({error}: {error: Error}) {
-  console.error(error)
   const [theme] = useTheme()
 
   return (

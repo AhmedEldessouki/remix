@@ -11,6 +11,8 @@
     "lint": "eslint --cache --cache-location ./node_modules/.cache/.eslintcache --ext js,jsx,ts,tsx .",
     "format": "prettier --write \"**/*.+(js|jsx|json|yml|yaml|css|ts|tsx|md|mdx)\"",
     "typecheck": "tsc -b",
+    "db:boot": "supabase start",
+    "db:shutdown": "supabase stop",
     "postinstall": "remix setup node && metronome setup",
     "prepare": "husky install",
     "start": "remix-serve build"
