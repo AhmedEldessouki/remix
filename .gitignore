@@ -1,6 +1,5 @@
 node_modules
 
-# Env Files
 .env
 .env.*
 
@@ -10,3 +9,5 @@ node_modules
 app/styles/
 
 tsconfig.tsbuildinfo
+# Supabase
+.supabase

@@ -2,6 +2,9 @@ import React from 'react'
 import ReactDOMServer from 'react-dom/server'
 import type {EntryContext} from 'remix'
 import {RemixServer} from 'remix'
+import * as dotenv from 'dotenv'
+
+console.log(dotenv.config())
 
 export default function handleRequest(
   request: Request,
