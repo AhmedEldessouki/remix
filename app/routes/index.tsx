@@ -1,8 +1,6 @@
-/* eslint-disable no-negated-condition */
 import React from 'react'
 import type {MetaFunction, LoaderFunction} from 'remix'
-import {useLoaderData} from 'remix'
-import {Link} from 'react-router-dom'
+import {Link} from 'remix'
 
 export const meta: MetaFunction = () => {
   return {
@@ -16,8 +14,6 @@ export const loader: LoaderFunction = async () => {
 }
 
 export default function Index() {
-  const data = useLoaderData()
-
   return (
     <section
       className="max-w-full min-h-mx text-black dark:text-my-100"
