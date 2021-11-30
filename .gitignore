@@ -1,12 +1,15 @@
 node_modules
 
-# Env Files
+.cache
+.vercel
+.output
+
+public/build
+api/build
+app/styles/
+tsconfig.tsbuildinfo
+# Supabase
+.supabase
+
 .env
 .env.*
-
-/.cache
-/build
-/public/build
-app/styles/
-
-tsconfig.tsbuildinfo
