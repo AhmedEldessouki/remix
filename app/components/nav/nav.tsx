@@ -1,5 +1,7 @@
 import {motion, useMotionValue} from 'framer-motion'
 import React from 'react'
+import {useFetcher} from 'remix'
+import {Theme} from '../../../types'
 import DropDown from './dropdown'
 
 const variants = {
@@ -8,15 +10,19 @@ const variants = {
 }
 
 function Nav() {
-  let theme: string = 'dark'
-  const x = useMotionValue(theme === 'dark' ? 20 : 0)
-
-  React.useEffect(() => {
-    //  theme = window.matchMedia('prefers-color-scheme')
+  const routes = useFetcher()
+  const [theme, setTheme] = React.useState<Theme | undefined>(() => {
     if (typeof window === 'undefined') return
-    x.set(theme === 'dark' ? 20 : 0)
-  }, [theme, x])
 
+    return undefined
+  })
+  // eslint-disable-next-line no-negated-condition
+  const x = useMotionValue(!theme ? 10 : theme === 'dark' ? 20 : 0)
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return
+    const res = routes.load('/')
+    console.log(res)
+  }, [])
   return (
     <nav className="gap-2.5 items-center px-2.5 w-full min-h-sm">
       <div className="prose">
@@ -25,20 +31,26 @@ function Nav() {
       <button
         className="mx-auto w-14 h-9 bg-trans border-4 border-blueGray-600 rounded-3xl drop-shadow-sm"
         onClick={() => {
-          // setTheme(previousTheme =>
-          //   previousTheme == 'DARK' ? 'LIGHT' : 'DARK',
-          // )
+          if (!theme) return
+          routes.submit(
+            {theme: theme === 'light' ? 'dark' : 'light'},
+            {action: '/action/theme', method: 'post'},
+          )
+          x.set(theme === 'dark' ? 20 : 0)
+
+          setTheme(is => (is === 'light' ? 'dark' : 'light'))
+          console.log(theme)
         }}
       >
         <motion.div
           className="w-6 h-6 bg-blueGray-600 rounded-full shadow-sm"
           style={{x, rotate: 180, margin: '0.12rem'}}
           transition={{duration: 0.5}}
-          animate={theme !== '' && theme}
+          animate={theme && theme}
           variants={variants}
           aria-label={`Theme Switch from ${
-            theme == 'DARK' ? 'Dark' : 'Light'
-          } to ${theme == 'LIGHT' ? 'Light' : 'Dark'}`}
+            theme === 'dark' ? 'dark' : 'Light'
+          } to ${theme === 'light' ? 'light' : 'dark'}`}
         />
       </button>
       <DropDown />

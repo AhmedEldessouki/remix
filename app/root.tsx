@@ -19,6 +19,7 @@ import type {DataSession} from '../types'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
 import appStyles from './styles/app.css'
+import {getThemeSession} from './sessions'
 
 export const links: LinksFunction = () => {
   return [
@@ -53,11 +54,11 @@ export const links: LinksFunction = () => {
 }
 
 export const loader: LoaderFunction = async ({request}) => {
-  // const themeSession = await getThemeSession(request)
+  const themeSession = await getThemeSession(request.headers.get('Cookie'))
 
   const data = {
     session: {
-      theme: '',
+      theme: themeSession.get('theme'),
     },
   }
 
@@ -189,9 +190,7 @@ function Layout({children}: {children: React.ReactNode}) {
 }
 export default function App() {
   const data = useLoaderData<DataSession>()
-  React.useEffect(() => {
-    console.log(window?.matchMedia('(prefers-color-scheme:dark)'))
-  }, [])
+
   return (
     <IdProvider>
       <AppWithoutProvider />

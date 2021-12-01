@@ -1,11 +1,9 @@
-import type {Theme} from '~/utils/theme-provider'
-
-type Await<Type> = Type extends Promise<infer Value> ? Await<Value> : Type
+type Theme = 'dark' | 'light'
 
 type DataSession = {
-  session: {
+  sessions: {
     theme: Theme
   }
 }
 
-export {Await, DataSession}
+export {DataSession, Theme}
