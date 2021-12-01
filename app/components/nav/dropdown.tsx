@@ -7,7 +7,7 @@ import {useId} from '@radix-ui/react-id'
 
 function Item({children}: {children: React.ReactNode}) {
   return (
-    <DropdownMenu.Item className="dark:focus-within:bg-sky-700 focus-within:bg-shadow-300 px-2 py-1.5 rounded">
+    <DropdownMenu.Item className="dark:focus-within:bg-sky-700 px-2 py-1.5 focus-within:bg-shadow-300 rounded">
       {children}
     </DropdownMenu.Item>
   )
@@ -71,9 +71,8 @@ export default function DropDown() {
           variants={fade}
         />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className="slide-down-app bg-shadow-100 flex flex-col gap-2 items-center justify-center p-4 text-my-100 rounded">
+      <DropdownMenu.Content className="slide-down-app flex flex-col gap-2 items-center justify-center p-4 text-my-100 bg-shadow-100 rounded">
         <Item>
-          {' '}
           <Link to="/users">Users</Link>
         </Item>
         <Item>Some Value</Item>

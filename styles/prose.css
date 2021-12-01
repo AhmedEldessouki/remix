@@ -1,6 +1,9 @@
 @tailwind base;
 @tailwind components;
 
+.prose {
+  max-width: 100%;
+}
 .dark .prose *:not(h1) {
   @apply text-blueGray-200;
 }
