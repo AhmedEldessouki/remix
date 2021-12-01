@@ -15,8 +15,9 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/sort-type-union-intersection-members': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
-    'jsx-a11y/alt-text': 'off', // it's not smart enough...
+    'jsx-a11y/alt-text': 'off',
     'react/jsx-filename-extension': 'off',
+    '@typescript-eslint/no-unnecessary-condition': 'off',
     '@typescript-eslint/no-namespace': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',

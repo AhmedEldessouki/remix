@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import * as React from 'react'
 import {
   Link,
@@ -15,17 +14,13 @@ import {
 import type {LinksFunction, LoaderFunction, HeadersFunction} from 'remix'
 import {IdProvider} from '@radix-ui/react-id'
 import {motion} from 'framer-motion'
-// import {Theme, ThemeProvider, useTheme} from './utils/theme-provider'
-// import {getThemeSession} from './utils/theme.server'
 import Nav from './components/nav/nav'
 import type {DataSession} from '../types'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
 import appStyles from './styles/app.css'
 
-// https://remix.run/api/app#links
 export const links: LinksFunction = () => {
-  // ! Limit the Fonts to where it's being used. Unless It's commonly Used
   return [
     {
       rel: 'preload',
