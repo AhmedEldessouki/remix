@@ -3,10 +3,11 @@ import {motion} from 'framer-motion'
 import React from 'react'
 import clsx from 'clsx'
 import {Link} from 'remix'
+import {useId} from '@radix-ui/react-id'
 
 function Item({children}: {children: React.ReactNode}) {
   return (
-    <DropdownMenu.Item className="dark:focus-within:bg-sky-700 px-2 py-1.5 focus-within:bg-mm-300 rounded">
+    <DropdownMenu.Item className="dark:focus-within:bg-sky-700 focus-within:bg-shadow-300 px-2 py-1.5 rounded">
       {children}
     </DropdownMenu.Item>
   )
@@ -19,7 +20,7 @@ const turnLeft = {
     rotate: 45,
   },
   close: {
-    backgroundColor: 'var(--mm-100)',
+    backgroundColor: 'var(--shadow-100)',
     rotate: 0,
   },
 }
@@ -29,7 +30,7 @@ const turnRight = {
     rotate: -45,
   },
   close: {
-    backgroundColor: 'var(--mm-100)',
+    backgroundColor: 'var(--shadow-100)',
     rotate: 0,
   },
 }
@@ -44,9 +45,9 @@ const fade = {
 
 export default function DropDown() {
   const [isOpen, setIsOpen] = React.useState(false)
-
+  const id = useId()
   return (
-    <DropdownMenu.Root onOpenChange={() => setIsOpen(state => !state)}>
+    <DropdownMenu.Root key={id} onOpenChange={() => setIsOpen(state => !state)}>
       <DropdownMenu.Trigger className="mx-auto px-3 py-1.5 border-4 border-blueGray-600 border-opacity-100 rounded-lg shadow-inner">
         <motion.div
           className={clsx('app-block', {
@@ -70,7 +71,7 @@ export default function DropDown() {
           variants={fade}
         />
       </DropdownMenu.Trigger>
-      <DropdownMenu.Content className="slide-down-app flex flex-col gap-2 items-center justify-center p-4 text-my-100 bg-mm-100 rounded">
+      <DropdownMenu.Content className="slide-down-app bg-shadow-100 flex flex-col gap-2 items-center justify-center p-4 text-my-100 rounded">
         <Item>
           {' '}
           <Link to="/users">Users</Link>
