@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import * as React from 'react'
 import {
   Link,
@@ -14,8 +15,8 @@ import {
 import type {LinksFunction, LoaderFunction, HeadersFunction} from 'remix'
 import {IdProvider} from '@radix-ui/react-id'
 import {motion} from 'framer-motion'
-import {Theme, ThemeProvider, useTheme} from './utils/theme-provider'
-import {getThemeSession} from './utils/theme.server'
+// import {Theme, ThemeProvider, useTheme} from './utils/theme-provider'
+// import {getThemeSession} from './utils/theme.server'
 import Nav from './components/nav/nav'
 import type {DataSession} from '../types'
 import tailwindStyles from './styles/tailwind.css'
@@ -57,11 +58,11 @@ export const links: LinksFunction = () => {
 }
 
 export const loader: LoaderFunction = async ({request}) => {
-  const themeSession = await getThemeSession(request)
+  // const themeSession = await getThemeSession(request)
 
-  const data: DataSession = {
+  const data = {
     session: {
-      theme: themeSession.getTheme(),
+      theme: '',
     },
   }
 
@@ -70,9 +71,8 @@ export const loader: LoaderFunction = async ({request}) => {
 // https://remix.run/api/conventions#default-export
 // https://remix.run/api/conventions#route-filenames
 function AppWithoutProvider() {
-  const [theme] = useTheme()
   return (
-    <Document theme={theme}>
+    <Document>
       <Layout>
         <Outlet />
       </Layout>
@@ -82,10 +82,8 @@ function AppWithoutProvider() {
 
 // https://remix.run/docs/en/v1/api/conventions#errorboundary
 export function ErrorBoundary({error}: {error: Error}) {
-  const [theme] = useTheme()
-
   return (
-    <Document theme={theme} title="Error!">
+    <Document title="Error!">
       <Layout>
         <div>
           <h1>There was an error</h1>
@@ -104,7 +102,6 @@ export function ErrorBoundary({error}: {error: Error}) {
 // https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
   const caught = useCatch()
-  const [theme] = useTheme()
 
   let message
   switch (caught.status) {
@@ -127,7 +124,7 @@ export function CatchBoundary() {
   }
 
   return (
-    <Document theme={theme} title={`${caught.status} ${caught.statusText}`}>
+    <Document title={`${caught.status} ${caught.statusText}`}>
       <Layout>
         <h1>
           {caught.status}: {caught.statusText}
@@ -141,15 +138,12 @@ export function CatchBoundary() {
 function Document({
   children,
   title,
-  theme,
 }: {
   children: React.ReactChild
   title?: string
-  theme?: Theme | null
 }) {
-  const data = useLoaderData()
   return (
-    <html lang="en" className={theme ? theme : ''}>
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -200,13 +194,13 @@ function Layout({children}: {children: React.ReactNode}) {
 }
 export default function App() {
   const data = useLoaderData<DataSession>()
-
+  React.useEffect(() => {
+    console.log(window?.matchMedia('(prefers-color-scheme:dark)'))
+  }, [])
   return (
-    <ThemeProvider specifiedTheme={data.session.theme}>
-      <IdProvider>
-        <AppWithoutProvider />
-      </IdProvider>
-    </ThemeProvider>
+    <IdProvider>
+      <AppWithoutProvider />
+    </IdProvider>
   )
 }
 function RemixLogo() {

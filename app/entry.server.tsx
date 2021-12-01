@@ -2,6 +2,9 @@ import React from 'react'
 import {renderToString} from 'react-dom/server'
 import {RemixServer} from 'remix'
 import type {EntryContext} from 'remix'
+import {PrismaClient} from '@prisma/client'
+
+export const prisma = new PrismaClient()
 
 export default function handleRequest(
   request: Request,
