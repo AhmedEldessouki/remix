@@ -35,7 +35,7 @@ module.exports = {
         600: 'var(--my06)',
       },
 
-      mm: {
+      shadow: {
         100: 'var(--shadow-900)',
         200: 'var(--shadow-800)',
         300: 'var(--shadow-700)',
