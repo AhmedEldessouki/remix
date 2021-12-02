@@ -17,6 +17,7 @@
   --shadow-800: hsla(214, 97%, 27%, 0.15);
   --shadow-900: hsla(239, 94%, 19%, 0.15);
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --my01: #d5dff7;
@@ -37,11 +38,14 @@
     --shadow-800: hsla(190, 76%, 82%, 0.15);
     --shadow-900: hsla(190, 77%, 88%, 0.15);
   }
+  img {
+    filter: brightness(0.8) contrast(1.2);
+  }
 }
 
 nav {
   display: grid;
-  grid-template-columns: 1fr 75px 75px;
+  grid-template-columns: 1fr 75px;
 }
 
 @keyframes slide {

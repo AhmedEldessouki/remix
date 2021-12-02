@@ -3,6 +3,7 @@
 
 .prose {
   max-width: 100%;
+  @apply dark:text-my-100;
 }
 .dark .prose *:not(h1) {
   @apply text-blueGray-200;
