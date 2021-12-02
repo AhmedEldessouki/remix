@@ -1,9 +1,9 @@
 type Theme = 'dark' | 'light'
 
-type DataSession = {
-  sessions: {
-    theme: Theme
+type HomeLoaderData = {
+  storage: {
+    theme: Theme | undefined
   }
 }
 
-export {DataSession, Theme}
+export {HomeLoaderData, Theme}

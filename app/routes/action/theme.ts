@@ -1,20 +1,18 @@
-import {commitThemeSession, getThemeSession} from '~/sessions.js'
+import {getThemeSession} from '~/sessions.js'
 import {json} from 'remix'
 import type {ActionFunction} from 'remix'
 
 export const action: ActionFunction = async ({request}) => {
-  const themeSession = await getThemeSession(request.headers.get('Cookie'))
+  const themeSession = await getThemeSession(request)
 
   const requestText = await request.text()
   const form = new URLSearchParams(requestText)
   const theme = form.get('theme')
 
-  if (themeSession.get('theme') === theme) {
+  if (themeSession.getTheme() === theme) {
     return json({
       success: false,
-      message: `SetThemeAction: Theme Didn't Change. Session: [${themeSession.get(
-        'theme',
-      )}] & Theme: ${theme}`,
+      message: `SetThemeAction: Theme Didn't Change. Session: [${themeSession.getTheme()}] & Theme: ${theme}`,
     })
   }
 
@@ -23,14 +21,15 @@ export const action: ActionFunction = async ({request}) => {
       success: false,
       message: `Theme: ${theme} is not valid.`,
     })
-  themeSession.set('theme', theme)
+
+  themeSession.setTheme(theme)
 
   return json(
     {
       success: true,
     },
     {
-      headers: {'Set-Cookie': await commitThemeSession(themeSession)},
+      headers: {'Set-Cookie': await themeSession.commit()},
     },
   )
 }

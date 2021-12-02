@@ -11,15 +11,22 @@ import {
   useCatch,
   json,
 } from 'remix'
-import type {LinksFunction, LoaderFunction, HeadersFunction} from 'remix'
+import type {LinksFunction, LoaderFunction} from 'remix'
 import {IdProvider} from '@radix-ui/react-id'
 import {motion} from 'framer-motion'
 import Nav from './components/nav/nav'
-import type {DataSession} from '../types'
+import type {HomeLoaderData, Theme} from '../types'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
 import appStyles from './styles/app.css'
 import {getThemeSession} from './sessions'
+import ThemeProvider, {useTheme} from './utils/themeProvider'
+
+// export const headers: HeadersFunction = () => {
+//   return {
+//     'Cache-Control': 'max-age=300, s-maxage=3600',
+//   }
+// }
 
 export const links: LinksFunction = () => {
   return [
@@ -54,49 +61,50 @@ export const links: LinksFunction = () => {
 }
 
 export const loader: LoaderFunction = async ({request}) => {
-  const themeSession = await getThemeSession(request.headers.get('Cookie'))
+  const themeSession = await getThemeSession(request)
 
-  const data = {
-    session: {
-      theme: themeSession.get('theme'),
+  const theme = themeSession.getTheme()
+
+  const data: HomeLoaderData = {
+    storage: {
+      theme: undefined,
     },
   }
+  if (theme === 'dark' || theme === 'light') {
+    data.storage.theme = theme
+  }
 
-  return json(data)
-}
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
-function AppWithoutProvider() {
-  return (
-    <Document>
-      <Layout>
-        <Outlet />
-      </Layout>
-    </Document>
-  )
+  return json(data, {
+    headers: {
+      'Set-Cookie': await themeSession.commit(),
+    },
+  })
 }
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
-export function ErrorBoundary({error}: {error: Error}) {
+function ErrorBoundaryWithOutProvider({error}: {error: Error}) {
   return (
     <Document title="Error!">
-      <Layout>
-        <div>
-          <h1>There was an error</h1>
-          <p>{error.message}</p>
-          <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
-        </div>
-      </Layout>
+      <p>{error.message}</p>
     </Document>
   )
 }
 
-// https://remix.run/docs/en/v1/api/conventions#catchboundary
+export function ErrorBoundary({error}: {error: Error}) {
+  return (
+    <ThemeProvider>
+      <ErrorBoundaryWithOutProvider error={error} />
+    </ThemeProvider>
+  )
+}
+
 export function CatchBoundary() {
+  return (
+    <ThemeProvider>
+      <CatchBoundaryWithOutProvider />
+    </ThemeProvider>
+  )
+}
+function CatchBoundaryWithOutProvider() {
   const caught = useCatch()
 
   let message
@@ -111,7 +119,11 @@ export function CatchBoundary() {
       break
     case 404:
       message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
+        <p className="mx-2 text-lg italic">
+          You can go back to{' '}
+          <span className="text-sky-400 underline font-bold">Home Page</span> by
+          clicking on the link below.
+        </p>
       )
       break
 
@@ -121,12 +133,20 @@ export function CatchBoundary() {
 
   return (
     <Document title={`${caught.status} ${caught.statusText}`}>
-      <Layout>
-        <h1>
+      <>
+        <h1 className="mx-5 my-3 text-2xl">
           {caught.status}: {caught.statusText}
         </h1>
-        {message}
-      </Layout>
+        <div className="flex flex-col items-center justify-center mx-6">
+          {message}
+          <Link
+            to="/"
+            className="px-4 py-2.5 hover:bg-blueGray-500 bg-shadow-300 rounded"
+          >
+            Home
+          </Link>
+        </div>
+      </>
     </Document>
   )
 }
@@ -134,17 +154,19 @@ export function CatchBoundary() {
 function Document({
   children,
   title,
+  theme,
 }: {
   children: React.ReactChild
   title?: string
+  theme?: Theme
 }) {
+  const {theme: themeX} = useTheme()
   return (
-    <html lang="en">
+    <html lang="en" className={themeX}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         {title ? <title>{title}</title> : <title>Ahmed ElDessouki</title>}
-        {/* <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.session.theme)} /> */}
         <Meta />
         <Links />
       </head>
@@ -160,14 +182,9 @@ function Document({
 
 function Layout({children}: {children: React.ReactNode}) {
   return (
-    <div>
+    <>
       <header className="prose">
-        <div>
-          <Link to="/" title="Remix" className="remix-app__header-home-link">
-            <RemixLogo />
-          </Link>
-          <Nav />
-        </div>
+        <Nav />
       </header>
       <div>{children}</div>
       <footer>
@@ -185,15 +202,26 @@ function Layout({children}: {children: React.ReactNode}) {
           </motion.a>
         </div>
       </footer>
-    </div>
+    </>
   )
 }
-export default function App() {
-  const data = useLoaderData<DataSession>()
+function App() {
+  return (
+    <Document>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Document>
+  )
+}
+export default function AppWithProviders() {
+  const data = useLoaderData<HomeLoaderData>()
 
   return (
     <IdProvider>
-      <AppWithoutProvider />
+      <ThemeProvider cachedTheme={data.storage.theme}>
+        <App />
+      </ThemeProvider>
     </IdProvider>
   )
 }

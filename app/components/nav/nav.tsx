@@ -1,7 +1,9 @@
 import {motion, useMotionValue} from 'framer-motion'
 import React from 'react'
 import {useFetcher} from 'remix'
-import {Theme} from '../../../types'
+import {getThemeSession} from '~/sessions'
+import {useTheme} from '~/utils/themeProvider'
+import type {Theme, HomeLoaderData} from '../../../types'
 import DropDown from './dropdown'
 
 const variants = {
@@ -10,35 +12,23 @@ const variants = {
 }
 
 function Nav() {
-  const routes = useFetcher()
-  const [theme, setTheme] = React.useState<Theme | undefined>(() => {
-    if (typeof window === 'undefined') return
+  const {theme, setTheme} = useTheme()
+  const x = useMotionValue(
+    // eslint-disable-next-line no-negated-condition
+    !theme ? 10 : theme === 'dark' ? 20 : 0,
+  )
 
-    return undefined
-  })
-  // eslint-disable-next-line no-negated-condition
-  const x = useMotionValue(!theme ? 10 : theme === 'dark' ? 20 : 0)
-  React.useEffect(() => {
-    if (typeof window === 'undefined') return
-    const res = routes.load('/')
-    console.log(res)
-  }, [])
   return (
     <nav className="gap-2.5 items-center px-2.5 w-full min-h-sm">
       <div className="prose">
-        <h1 className="prose xxx-fa-safmb text-left">Ahmed Eldessouki</h1>
+        <h1 className="prose text-left">Ahmed Eldessouki</h1>
       </div>
       <button
         className="mx-auto w-14 h-9 bg-trans border-4 border-blueGray-600 rounded-3xl drop-shadow-sm"
         onClick={() => {
-          if (!theme) return
-          routes.submit(
-            {theme: theme === 'light' ? 'dark' : 'light'},
-            {action: '/action/theme', method: 'post'},
-          )
+          console.log(theme)
+          setTheme(theme === 'light' ? 'dark' : 'light')
           x.set(theme === 'dark' ? 20 : 0)
-
-          setTheme(is => (is === 'light' ? 'dark' : 'light'))
           console.log(theme)
         }}
       >
