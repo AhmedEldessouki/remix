@@ -15,12 +15,10 @@ import type {LinksFunction, LoaderFunction} from 'remix'
 import {IdProvider} from '@radix-ui/react-id'
 import {motion} from 'framer-motion'
 import Nav from './components/nav/nav'
-import type {HomeLoaderData, Theme} from '../types'
+import type {HomeLoaderData} from '../types'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
 import appStyles from './styles/app.css'
-import {getThemeSession} from './sessions'
-import ThemeProvider, {useTheme} from './utils/themeProvider'
 
 // export const headers: HeadersFunction = () => {
 //   return {
@@ -61,27 +59,15 @@ export const links: LinksFunction = () => {
 }
 
 export const loader: LoaderFunction = async ({request}) => {
-  const themeSession = await getThemeSession(request)
-
-  const theme = themeSession.getTheme()
-
   const data: HomeLoaderData = {
     storage: {
       theme: undefined,
     },
   }
-  if (theme === 'dark' || theme === 'light') {
-    data.storage.theme = theme
-  }
-
-  return json(data, {
-    headers: {
-      'Set-Cookie': await themeSession.commit(),
-    },
-  })
+  return json(data)
 }
 
-function ErrorBoundaryWithOutProvider({error}: {error: Error}) {
+export function ErrorBoundary({error}: {error: Error}) {
   return (
     <Document title="Error!">
       <p>{error.message}</p>
@@ -89,22 +75,7 @@ function ErrorBoundaryWithOutProvider({error}: {error: Error}) {
   )
 }
 
-export function ErrorBoundary({error}: {error: Error}) {
-  return (
-    <ThemeProvider>
-      <ErrorBoundaryWithOutProvider error={error} />
-    </ThemeProvider>
-  )
-}
-
 export function CatchBoundary() {
-  return (
-    <ThemeProvider>
-      <CatchBoundaryWithOutProvider />
-    </ThemeProvider>
-  )
-}
-function CatchBoundaryWithOutProvider() {
   const caught = useCatch()
 
   let message
@@ -154,15 +125,12 @@ function CatchBoundaryWithOutProvider() {
 function Document({
   children,
   title,
-  theme,
 }: {
   children: React.ReactChild
   title?: string
-  theme?: Theme
 }) {
-  const {theme: themeX} = useTheme()
   return (
-    <html lang="en" className={themeX}>
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -215,13 +183,9 @@ function App() {
   )
 }
 export default function AppWithProviders() {
-  const data = useLoaderData<HomeLoaderData>()
-
   return (
     <IdProvider>
-      <ThemeProvider cachedTheme={data.storage.theme}>
-        <App />
-      </ThemeProvider>
+      <App />
     </IdProvider>
   )
 }
