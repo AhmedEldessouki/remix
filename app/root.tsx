@@ -11,20 +11,16 @@ import {
   useCatch,
   json,
 } from 'remix'
-import type {LinksFunction, LoaderFunction, HeadersFunction} from 'remix'
+import type {LinksFunction, LoaderFunction} from 'remix'
 import {IdProvider} from '@radix-ui/react-id'
 import {motion} from 'framer-motion'
-import {Theme, ThemeProvider, useTheme} from './utils/theme-provider'
-import {getThemeSession} from './utils/theme.server'
 import Nav from './components/nav/nav'
-import type {DataSession} from '../types'
+import type {HomeLoaderData} from '../types'
 import tailwindStyles from './styles/tailwind.css'
 import proseStyles from './styles/prose.css'
 import appStyles from './styles/app.css'
 
-// https://remix.run/api/app#links
 export const links: LinksFunction = () => {
-  // ! Limit the Fonts to where it's being used. Unless It's commonly Used
   return [
     {
       rel: 'preload',
@@ -33,23 +29,6 @@ export const links: LinksFunction = () => {
       type: 'font/woff2',
       crossOrigin: 'anonymous',
     },
-    // {
-    //   rel: 'apple-touch-icon',
-    //   sizes: '180x180',
-    //   href: '/favicons/apple-touch-icon.png',
-    // },
-    {
-      rel: 'icon',
-      sizes: '32x32',
-      href: '/favicon.ico',
-    },
-    // {
-    //   rel: 'icon',
-    //   type: 'image/png',
-    //   sizes: '16x16',
-    //   href: '/favicons/favicon-16x16.png',
-    // },
-    // {rel: 'manifest', href: '/site.webmanifest'},
     {rel: 'stylesheet', href: tailwindStyles},
     {rel: 'stylesheet', href: proseStyles},
     {rel: 'stylesheet', href: appStyles},
@@ -57,55 +36,24 @@ export const links: LinksFunction = () => {
 }
 
 export const loader: LoaderFunction = async ({request}) => {
-  const themeSession = await getThemeSession(request)
-
-  const data: DataSession = {
-    session: {
-      theme: themeSession.getTheme(),
+  const data: HomeLoaderData = {
+    storage: {
+      theme: undefined,
     },
   }
-
   return json(data)
 }
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
-function AppWithoutProvider() {
-  const [theme] = useTheme()
-  return (
-    <Document theme={theme}>
-      <Layout>
-        <Outlet />
-      </Layout>
-    </Document>
-  )
-}
 
-// https://remix.run/docs/en/v1/api/conventions#errorboundary
 export function ErrorBoundary({error}: {error: Error}) {
-  console.error(error)
-  const [theme] = useTheme()
-
   return (
-    <Document theme={theme} title="Error!">
-      <Layout>
-        <div>
-          <h1>There was an error</h1>
-          <p>{error.message}</p>
-          <hr />
-          <p>
-            Hey, developer, you should replace this with what you want your
-            users to see.
-          </p>
-        </div>
-      </Layout>
+    <Document title="Error!">
+      <p>{error.message}</p>
     </Document>
   )
 }
 
-// https://remix.run/docs/en/v1/api/conventions#catchboundary
 export function CatchBoundary() {
   const caught = useCatch()
-  const [theme] = useTheme()
 
   let message
   switch (caught.status) {
@@ -119,7 +67,11 @@ export function CatchBoundary() {
       break
     case 404:
       message = (
-        <p>Oops! Looks like you tried to visit a page that does not exist.</p>
+        <p className="mx-2 text-lg italic">
+          You can go back to{' '}
+          <span className="text-sky-400 underline font-bold">Home Page</span> by
+          clicking on the link below.
+        </p>
       )
       break
 
@@ -128,13 +80,21 @@ export function CatchBoundary() {
   }
 
   return (
-    <Document theme={theme} title={`${caught.status} ${caught.statusText}`}>
-      <Layout>
-        <h1>
+    <Document title={`${caught.status} ${caught.statusText}`}>
+      <>
+        <h1 className="mx-5 my-3 text-2xl">
           {caught.status}: {caught.statusText}
         </h1>
-        {message}
-      </Layout>
+        <div className="flex flex-col items-center justify-center mx-6">
+          {message}
+          <Link
+            to="/"
+            className="px-4 py-2.5 hover:bg-blueGray-500 bg-shadow-300 rounded"
+          >
+            Home
+          </Link>
+        </div>
+      </>
     </Document>
   )
 }
@@ -142,20 +102,16 @@ export function CatchBoundary() {
 function Document({
   children,
   title,
-  theme,
 }: {
   children: React.ReactChild
   title?: string
-  theme?: Theme | null
 }) {
-  const data = useLoaderData()
   return (
-    <html lang="en" className={theme ? theme : ''}>
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         {title ? <title>{title}</title> : <title>Ahmed ElDessouki</title>}
-        {/* <NonFlashOfWrongThemeEls ssrTheme={Boolean(data.session.theme)} /> */}
         <Meta />
         <Links />
       </head>
@@ -171,14 +127,9 @@ function Document({
 
 function Layout({children}: {children: React.ReactNode}) {
   return (
-    <div>
+    <>
       <header className="prose">
-        <div>
-          <Link to="/" title="Remix" className="remix-app__header-home-link">
-            <RemixLogo />
-          </Link>
-          <Nav />
-        </div>
+        <Nav />
       </header>
       <div>{children}</div>
       <footer>
@@ -196,18 +147,23 @@ function Layout({children}: {children: React.ReactNode}) {
           </motion.a>
         </div>
       </footer>
-    </div>
+    </>
   )
 }
-export default function App() {
-  const data = useLoaderData<DataSession>()
-
+function App() {
   return (
-    <ThemeProvider specifiedTheme={data.session.theme}>
-      <IdProvider>
-        <AppWithoutProvider />
-      </IdProvider>
-    </ThemeProvider>
+    <Document>
+      <Layout>
+        <Outlet />
+      </Layout>
+    </Document>
+  )
+}
+export default function AppWithProviders() {
+  return (
+    <IdProvider>
+      <App />
+    </IdProvider>
   )
 }
 function RemixLogo() {
