@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -18,14 +18,14 @@ model Project {
   repoUrl     String
   projectType String
   images      Image[]
-  tag         Tag[]
+  tags        Tag[]
 }
 
 model Tag {
   url       String
   name      String
   id        String   @id @default(cuid())
-  projectId String?
+  projectId String[]
   Project   Project? @relation(fields: [projectId], references: [id])
 }
 
